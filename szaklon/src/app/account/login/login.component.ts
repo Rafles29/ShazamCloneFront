@@ -26,7 +26,11 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     }).subscribe(token => {
       if (token !== '') {
+        // TODO toaster
         this._router.navigateByUrl('/');
+      } else {
+        // TODO jakiś error
+        console.log('nie udalo sie zalogowac')
       }
     });
   }

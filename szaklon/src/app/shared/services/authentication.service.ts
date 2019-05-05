@@ -18,7 +18,7 @@ export class AuthenticationService {
   constructor(private _http: HttpClient) { }
 
   login(userCredentials: UserLogin): Observable<string> {
-    console.log('elo')
+    console.log('elo');
     return this._http.post(environment.baseUrl + environment.loginUrl, userCredentials, {responseType: 'text'})
     .pipe(tap(token => {
       console.log(token);
@@ -27,7 +27,7 @@ export class AuthenticationService {
     }))
     .pipe(catchError(err => {
       this.loggedInSubject.next(false);
-      console.log(err)
+      console.log(err);
       return of('');
     }));
   }
@@ -37,7 +37,7 @@ export class AuthenticationService {
       this.deleteUser();
       this.loggedInSubject.next(false);
     }, err => {
-      console.log(err)
+      console.log(err);
     });
   }
 
@@ -53,12 +53,23 @@ export class AuthenticationService {
     }
   }
 
-  saveUser(username: string, token: string): void {
+  // true
+  deleteAccount(): Observable<boolean> {
+    // TODO replace mock with real code
+
+    console.log('deleting...');
+    // MOCK
+    this.deleteUser();
+    this.loggedInSubject.next(false);
+    return of(true);
+  }
+
+  private saveUser(username: string, token: string): void {
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USERNAME_KEY, username);
   }
 
-  deleteUser() {
+  private deleteUser() {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USERNAME_KEY);
   }

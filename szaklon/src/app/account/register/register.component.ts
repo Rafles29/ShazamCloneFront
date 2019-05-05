@@ -37,7 +37,11 @@ export class RegisterComponent implements OnInit {
       }).subscribe(registered => {
         console.log(registered)
         if (!!registered) {
+          // TODO toaster
           this._router.navigateByUrl('/');
+        } else {
+          // TODO jakis error w formularzu
+          console.log('nie udalo sie zarejestrowac');
         }
       });
     }

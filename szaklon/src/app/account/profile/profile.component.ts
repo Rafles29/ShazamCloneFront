@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+
+  constructor(private _auth: AuthenticationService, private _router: Router) { }
 
   ngOnInit() {
+    this.username = this._auth.getUsername();
+  }
+
+  deleteAccount() {
+    this._auth.deleteAccount().subscribe(response => {
+      if (response) {
+        this._router.navigateByUrl('/');
+      } else {
+        // TODO toaster
+        console.log('nie udalo sie usunac konta');
+      }
+    });
   }
 
 }
