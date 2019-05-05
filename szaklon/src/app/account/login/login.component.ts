@@ -1,4 +1,8 @@
+import { UserLogin } from './../../shared/models/user-login.interface';
+import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm = this._formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  });
 
-  ngOnInit() {
+  constructor(private _formBuilder: FormBuilder, private _auth: AuthenticationService, private _router: Router) { }
+
+  ngOnInit() { }
+
+  login() {
+    this._auth.login({
+      login: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
+    }).subscribe(token => {
+      if (token !== '') {
+        this._router.navigateByUrl('/');
+      }
+    });
   }
-
 }

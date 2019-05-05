@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+  loggedIn: boolean;
+
+  constructor(private _auth: AuthenticationService) { }
 
   ngOnInit() {
+    this._auth.isLoggedIn().subscribe(newValue => {
+      this.loggedIn = newValue;
+      this.username = this._auth.getUsername();
+    });
+  }
+
+  logout() {
+    this._auth.logout();
   }
 
 }
