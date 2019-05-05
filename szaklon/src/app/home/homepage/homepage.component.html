@@ -2,3 +2,13 @@
   homepage works!
 </p>
 <mdb-icon fas icon="camera-retro" size="5x"></mdb-icon> 5x
+
+<hr>
+<div class="container">
+  <mat-basic-audio-player [audioUrl]="'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'" [title]="'Behind Enemy Lines'" [displayTitle]="true"></mat-basic-audio-player>
+
+  <hr class="my-3">
+
+  <mat-advanced-audio-player [playlist]="playlist" [displayTitle]="true" [displayPlaylist]="true" [pageSizeOptions]="[3]" [expanded]="false"></mat-advanced-audio-player>
+</div>
+

@@ -53,7 +53,7 @@ export class AuthenticationService {
     }
   }
 
-  // true
+  // true if account deleted
   deleteAccount(): Observable<boolean> {
     // TODO replace mock with real code
 
