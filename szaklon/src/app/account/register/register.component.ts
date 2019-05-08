@@ -2,6 +2,7 @@ import { AuthenticationService } from './../../shared/services/authentication.se
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ToastService} from 'ng-uikit-pro-standard'
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   }, { validator: this.passwordConfirming }
   );
 
-  constructor(private _formBuilder: FormBuilder, private _auth: AuthenticationService, private _router: Router) { }
+  constructor(private toast: ToastService, private _formBuilder: FormBuilder, private _auth: AuthenticationService, private _router: Router) { }
 
   ngOnInit() {
   }
@@ -37,10 +38,10 @@ export class RegisterComponent implements OnInit {
       }).subscribe(registered => {
         console.log(registered)
         if (!!registered) {
-          // TODO toaster
+          this.toast.success("Rejestracja powiodła się")
           this._router.navigateByUrl('/');
         } else {
-          // TODO jakis error w formularzu
+          this.toast.error("nie udalo sie zarejestrowac")
           console.log('nie udalo sie zarejestrowac');
         }
       });

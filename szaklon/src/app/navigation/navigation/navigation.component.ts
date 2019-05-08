@@ -1,5 +1,6 @@
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import {ToastService} from 'ng-uikit-pro-standard'
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +12,7 @@ export class NavigationComponent implements OnInit {
   username: string;
   loggedIn: boolean;
 
-  constructor(private _auth: AuthenticationService) { }
+  constructor(private toast: ToastService, private _auth: AuthenticationService) { }
 
   ngOnInit() {
     this._auth.isLoggedIn().subscribe(newValue => {
@@ -22,6 +23,7 @@ export class NavigationComponent implements OnInit {
 
   logout() {
     this._auth.logout();
+    this.toast.success("zostałeś wylogowany")
   }
 
 }

@@ -1,7 +1,7 @@
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ToastModule } from 'ng-uikit-pro-standard';
 import { NgModule } from '@angular/core';
 
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
@@ -17,9 +17,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    ToastModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModulesPro.forRoot(),
