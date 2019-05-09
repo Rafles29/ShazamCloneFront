@@ -1,4 +1,4 @@
-import { UserLogin } from './../../shared/models/user-login.interface';
+import { UserLogin } from '../../shared/models/user-login.model';
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';

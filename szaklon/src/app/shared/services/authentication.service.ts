@@ -1,10 +1,10 @@
-import { UserLogin } from './../models/user-login.interface';
+import { UserLogin } from '../models/user-login.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { UserRegister } from '../models/user-register.interface';
+import { UserRegister } from '../models/user-register.model';
 
 const TOKEN_KEY = 'Token';
 const USERNAME_KEY = 'Username';

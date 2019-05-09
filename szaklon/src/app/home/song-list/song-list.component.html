@@ -1,0 +1,16 @@
+<div class="card-deck">
+  <div class="card" *ngFor="let song of songs">
+    <mdb-card-body>
+      <div>
+        <mdb-card-title>
+          <h5>{{ song.title }}</h5>
+        </mdb-card-title>
+        <mdb-card-text><small class="text-muted">by {{ song.artist }}</small></mdb-card-text>
+      </div>
+      <audio class="w-100" controls>
+        <source [src]="song.audioUrl">
+        Your browser does not support audio element.
+      </audio>
+    </mdb-card-body>
+  </div>
+</div>
