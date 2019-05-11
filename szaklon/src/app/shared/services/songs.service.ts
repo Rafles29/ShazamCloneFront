@@ -28,8 +28,23 @@ export class SongsService {
         title: 'Epic Boss Battle',
         artist: 'Rafael Krux',
         audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+      },
+      {
+        title: 'Behind Enemy Lines',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
+      },
+      {
+        title: 'Big Eyes',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3'
+      },
+      {
+        title: 'Epic Boss Battle',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
       }
-    ]
+    ];
 
     return of(songs);
   }

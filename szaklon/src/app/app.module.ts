@@ -14,6 +14,8 @@ import { HomeModule } from './home/home.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     HomeModule,
     NavigationModule,
     AppRoutingModule,
+    SharedModule,
+    AdminModule,
   ],
   providers: [
     MDBSpinningPreloader,
