@@ -29,8 +29,7 @@ export class AuthenticationService {
     }))
     .pipe(catchError(err => {
       this.loggedInSubject.next(false);
-      console.log(err);
-      return of('');
+      return this.handleError(err);
     }));
   }
 
@@ -42,7 +41,10 @@ export class AuthenticationService {
       console.log(res.admin);
       this.saveUser(userCredentials.login, res.token, res.admin);
     }))
-    .pipe(catchError(this.handleError));
+    .pipe(catchError(err => {
+      this.loggedInSubject.next(false);
+      return this.handleError(err);
+    }));
   }
 
   logout() {
@@ -61,7 +63,7 @@ export class AuthenticationService {
     if (registerCredentials.password.length > 3) {
       return of(true);
     } else {
-      return of(false);
+      return throwError('Longer');
     }
   }
 

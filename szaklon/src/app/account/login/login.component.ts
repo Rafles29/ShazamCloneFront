@@ -34,14 +34,10 @@ export class LoginComponent implements OnInit {
       login: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     }).subscribe(token => {
-      if (token !== '') {
-        // TODO toaster
-        this.toast.success('Logowanie powiodło się');
+        this.toast.success('Success');
         this._router.navigate([this.returnUrl]);
-      } else {
-        // TODO jakiś error
-        this.toast.error('Logowanie nie powiodło się');
-      }
+    }, err => {
+      this.toast.error('Something went wrong. Please try again later.');
     });
   }
 }
