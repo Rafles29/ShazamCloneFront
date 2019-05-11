@@ -9,12 +9,24 @@
 
       <!-- Links -->
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item" *ngIf="!loggedIn">
-              <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect>Login</a>
-          </li>
-          <li class="nav-item" *ngIf="!loggedIn">
-              <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect>Register</a>
-          </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+            <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect>Login</a>
+        </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+            <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect>Register</a>
+        </li>
+
+        <!-- Dropdown -->
+        <!-- with ngIf
+        <li class="nav-item dropdown" dropdown *ngIf="loggedIn && admin">
+        -->
+        <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>Admin panel<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/users">Users</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/songs">Songs</a>
+            </div>
+        </li>
 
           <!-- Dropdown -->
           <li class="nav-item dropdown" dropdown *ngIf="loggedIn">

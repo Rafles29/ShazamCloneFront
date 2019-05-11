@@ -1,3 +1,77 @@
-<p>
-  user-list works!
-</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input type="text" class="form-control" id="search" mdbInput>
+          <label for="search">Search</label>
+        </div>
+      </div>
+    </div>
+    <mdb-card cascade="true" narrower="true">
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+          <h2>Users</h2>    
+        </div>
+        <!--/Card image-->
+      
+        <div class="px-4">
+      
+          <div class="table-wrapper">
+            <!--Table-->
+            <table class="mb-0" mdbTable hover="true">
+      
+              <!--Table head-->
+              <thead>
+              <tr>
+                <th>
+                  <a (click)="sortBy('id')">Id
+                    <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+                  </a>
+                </th>
+                <th>
+                  <a (click)="sortBy('login')">Login
+                    <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+                  </a>
+                </th>
+                <th>
+                  Edit
+                </th>
+                <th>
+                  Delete
+                </th>
+                <th>
+                  Logs
+                </th>
+              </tr>
+              </thead>
+              <!--Table head-->
+      
+              <!--Table body-->
+              <tbody>
+              <tr *ngFor="let user of users;let i = index">
+                <td>{{user.id}}</td>
+                <td>{{user.login}}</td>
+                <td>
+                  <button type="button" mdbBtn color="warning" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
+                    <mdb-icon fas icon="pencil-alt" class="mt-0"></mdb-icon>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" mdbBtn color="danger" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
+                    <mdb-icon fas icon="times" class="mt-0"></mdb-icon>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" mdbBtn color="success" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
+                    <mdb-icon fas icon="info-circle" class="mt-0"></mdb-icon>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+              <!--Table body-->
+            </table>
+            <!--Table-->
+          </div>
+        </div>
+      </mdb-card>
+  </div>

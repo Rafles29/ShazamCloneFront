@@ -113,6 +113,10 @@ export class AuthenticationService {
     return this.loggedInSubject.asObservable();
   }
 
+  isAdmin(): Observable<boolean> {
+    return this.adminSubject.asObservable();
+  }
+
   getUsername(): string {
     return localStorage.getItem(USERNAME_KEY);
   }
