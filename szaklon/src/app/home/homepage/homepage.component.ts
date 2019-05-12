@@ -1,5 +1,7 @@
+import { SongsService } from './../../shared/services/songs.service';
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
+import { Song } from 'src/app/shared/models/song.model';
 
 @Component({
   selector: 'app-homepage',
@@ -23,9 +25,16 @@ export class HomepageComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  mostPopularSongs: Song[];
+
+  constructor(private _songs: SongsService) { }
 
   ngOnInit() {
+    this._songs.getMostPopularSongs().subscribe(
+      mostPopularSongs => {
+        this.mostPopularSongs = mostPopularSongs;
+      }
+    )
   }
 
 }

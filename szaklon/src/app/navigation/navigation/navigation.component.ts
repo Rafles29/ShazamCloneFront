@@ -11,6 +11,7 @@ export class NavigationComponent implements OnInit {
 
   username: string;
   loggedIn: boolean;
+  admin: boolean;
 
   constructor(private toast: ToastService, private _auth: AuthenticationService) { }
 
@@ -19,11 +20,14 @@ export class NavigationComponent implements OnInit {
       this.loggedIn = newValue;
       this.username = this._auth.getUsername();
     });
+    this._auth.isAdmin().subscribe(newValue => {
+      this.admin = newValue;
+    });
   }
 
   logout() {
     this._auth.logout();
-    this.toast.success("zostałeś wylogowany")
+    this.toast.success('zostałeś wylogowany')
   }
 
 }

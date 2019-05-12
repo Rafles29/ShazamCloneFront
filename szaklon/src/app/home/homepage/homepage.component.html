@@ -5,10 +5,17 @@
 
 <hr>
 <div class="container">
+
   <mat-basic-audio-player [audioUrl]="'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'" [title]="'Behind Enemy Lines'" [displayTitle]="true"></mat-basic-audio-player>
 
-  <hr class="my-3">
+  <hr class="my-5">
 
-  <mat-advanced-audio-player [playlist]="playlist" [displayTitle]="true" [displayPlaylist]="true" [pageSizeOptions]="[3]" [expanded]="false"></mat-advanced-audio-player>
+  <h1>Most popular searches</h1>
+
+  <app-song-list [songs]="mostPopularSongs"></app-song-list>
+
+  <hr class="my-5">
+
+  <app-audio-input></app-audio-input>
 </div>
 
