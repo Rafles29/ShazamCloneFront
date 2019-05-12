@@ -7,6 +7,7 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { UserListComponent } from './admin/user-list/user-list.component';
+import { AddUserComponent } from './admin/add-user/add-user.component';
 
 
 const appRoutes: Routes = [
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: UserListComponent/*, canActivate: [AdminGuard] */},
+  { path: 'admin/users/add', component: AddUserComponent/*, canActivate: [AdminGuard] */},
   { path: '', component: HomepageComponent },
 ];
 

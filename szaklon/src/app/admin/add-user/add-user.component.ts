@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from 'ng-uikit-pro-standard';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-add-user',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  addUserForm = this._formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+  returnUrl: string;
+
+  constructor(private _toast: ToastService,
+    private _formBuilder: FormBuilder,
+    private _usersService: UsersService) { }
 
   ngOnInit() {
+  }
+
+  addUser() {
+    this._usersService.addUser({
+      login: this.addUserForm.get('username').value,
+      password: this.addUserForm.get('password').value
+    }).subscribe(token => {
+        this._toast.success('Success');
+        this.addUserForm.reset();
+    }, err => {
+      this._toast.error('Something went wrong. Please try again later.');
+    });
   }
 
 }
