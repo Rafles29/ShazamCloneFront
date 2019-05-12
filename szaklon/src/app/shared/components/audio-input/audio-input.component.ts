@@ -55,7 +55,7 @@ export class AudioInputComponent implements OnInit {
       console.log(err.name + ": " + err.message);
     });
 
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true})
+    navigator.mediaDevices.getUserMedia({ audio: true})
     .then(function(stream) {
       console.log(stream);
     })
