@@ -34,8 +34,7 @@ export class AudioRecorderService {
       this.mediaRecorder.ondataavailable = e => {
         if (this.mediaRecorder.state ===  'inactive') {
           this.blob = e.data;
-          const reader = new FileReader();
-          reader.readAsDataURL(this.blob);
+          this.reader.readAsDataURL(this.blob);
         }
       };
     })
