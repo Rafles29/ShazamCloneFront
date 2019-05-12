@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
@@ -10,9 +10,21 @@ export class AudioRecorderService {
   private mediaRecorder: MediaRecorder;
   private blob: Blob; // data for server
   private audio: SafeUrl;
+  private reader: FileReader;
+  public UrlReady: EventEmitter<SafeUrl> = new EventEmitter();
 
 
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer) {
+    this.reader = new FileReader();
+    this.reader.onload = (_event) => {
+      const result = this.reader.result.toString();
+      const sanitizeUrl = this._sanitizer.bypassSecurityTrustUrl(result);
+      this.audio = sanitizeUrl;
+    };
+    this.reader.onloadend = () => {
+      this.UrlReady.emit(this.audio);
+    };
+   }
 
   init() {
     navigator.mediaDevices.getUserMedia({ audio: true})
@@ -24,12 +36,6 @@ export class AudioRecorderService {
           this.blob = e.data;
           const reader = new FileReader();
           reader.readAsDataURL(this.blob);
-          reader.onload = (_event) => {
-            const result = reader.result.toString();
-            const sanitizeUrl = this._sanitizer.bypassSecurityTrustUrl(result);
-            this.audio = sanitizeUrl;
-            console.log(this.audio);
-          };
         }
       };
     })
@@ -50,5 +56,19 @@ export class AudioRecorderService {
 
   getAudio() {
     return this.audio;
+  }
+
+  getUrlFromFiles(files): SafeUrl {
+    if (files.length === 0) {
+      return;
+     }
+
+     const mimeType = files[0].type;
+     if (mimeType.match(/audio\/*/) == null) {
+       return;
+     }
+
+     this.reader.readAsDataURL(files[0]);
+
   }
 }

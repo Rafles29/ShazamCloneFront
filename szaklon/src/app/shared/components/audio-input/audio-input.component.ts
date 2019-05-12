@@ -22,28 +22,15 @@ export class AudioInputComponent implements OnInit {
 
   ngOnInit() {
     this._audioRecorder.init();
+    this._audioRecorder.UrlReady.subscribe(url => {
+      console.log('url');
+      this.source = url;
+    });
   }
 
 
   showPreview(files) {
-
-    if (files.length === 0) {
-     return;
-    }
-
-    const mimeType = files[0].type;
-    if (mimeType.match(/audio\/*/) == null) {
-      this.message = 'Only images are supported.';
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      const result = reader.result.toString();
-      const sanitizeUrl = this._sanitizer.bypassSecurityTrustUrl(result);
-      this.source = sanitizeUrl;
-    };
+    this._audioRecorder.getUrlFromFiles(files);
   }
 
   public recordAudio() {
