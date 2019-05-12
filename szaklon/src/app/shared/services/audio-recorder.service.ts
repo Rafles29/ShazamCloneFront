@@ -8,7 +8,7 @@ export class AudioRecorderService {
 
   private stream: MediaStream;
   private mediaRecorder: MediaRecorder;
-  private blob: Blob; // data for server
+  private file: File; // data for server
   private audio: SafeUrl;
   private reader: FileReader;
   public UrlReady: EventEmitter<SafeUrl> = new EventEmitter();
@@ -33,8 +33,8 @@ export class AudioRecorderService {
       this.mediaRecorder = new MediaRecorder(stream);
       this.mediaRecorder.ondataavailable = e => {
         if (this.mediaRecorder.state ===  'inactive') {
-          this.blob = e.data;
-          this.reader.readAsDataURL(this.blob);
+          this.file = this.blobToFile(e.data, this.uniqueId());
+          this.reader.readAsDataURL(e.data);
         }
       };
     })
@@ -49,8 +49,8 @@ export class AudioRecorderService {
     this.mediaRecorder.stop();
   }
 
-  getBlob() {
-    return this.blob;
+  getFile() {
+    return this.file;
   }
 
   getUrlFromFiles(files): SafeUrl {
@@ -62,7 +62,20 @@ export class AudioRecorderService {
      if (mimeType.match(/audio\/*/) == null) {
        return;
      }
-     this.blob = files[0];
-     this.reader.readAsDataURL(this.blob);
+     this.file = files[0];
+     this.reader.readAsDataURL(this.file);
+  }
+
+  private blobToFile = (theBlob: Blob, fileName: string): File => {
+    const b: any = theBlob;
+
+    b.lastModifiedDate = new Date();
+    b.name = fileName;
+
+    return <File>theBlob;
+  }
+
+  private uniqueId(): string {
+    return new Date().getUTCMilliseconds().toString() + '.webm';
   }
 }

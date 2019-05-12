@@ -23,7 +23,7 @@ export class AudioInputComponent implements OnInit {
     this._audioRecorder.init();
     this._audioRecorder.UrlReady.subscribe(url => {
       this.source = url;
-      this.blob = this._audioRecorder.getBlob();
+      this.blob = this._audioRecorder.getFile();
       console.log(this.blob);
     });
   }
