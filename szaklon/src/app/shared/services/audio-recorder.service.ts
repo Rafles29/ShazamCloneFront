@@ -53,10 +53,6 @@ export class AudioRecorderService {
     return this.blob;
   }
 
-  getAudio() {
-    return this.audio;
-  }
-
   getUrlFromFiles(files): SafeUrl {
     if (files.length === 0) {
       return;
@@ -66,8 +62,7 @@ export class AudioRecorderService {
      if (mimeType.match(/audio\/*/) == null) {
        return;
      }
-
-     this.reader.readAsDataURL(files[0]);
-
+     this.blob = files[0];
+     this.reader.readAsDataURL(this.blob);
   }
 }

@@ -14,17 +14,17 @@ export class AudioInputComponent implements OnInit {
   @ViewChild('audio') audio: ElementRef;
 
   public source: SafeUrl = '';
-  public message: string;
-  recording = false;
-
+  private recording = false;
+  blob: Blob;
 
   constructor(private _sanitizer: DomSanitizer, private _audioRecorder: AudioRecorderService) { }
 
   ngOnInit() {
     this._audioRecorder.init();
     this._audioRecorder.UrlReady.subscribe(url => {
-      console.log('url');
       this.source = url;
+      this.blob = this._audioRecorder.getBlob();
+      console.log(this.blob);
     });
   }
 
@@ -38,7 +38,6 @@ export class AudioInputComponent implements OnInit {
       this._audioRecorder.stopRecording();
       this.recording = false;
       console.log('stop');
-      this.source = this._audioRecorder.getAudio();
     } else {
       this._audioRecorder.startRecording();
       this.recording = true;
