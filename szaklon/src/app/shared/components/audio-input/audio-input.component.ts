@@ -1,5 +1,7 @@
 import { Component, OnInit,  ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { IfStmt } from '@angular/compiler';
+import { AudioRecorderService } from '../../services/audio-recorder.service';
 
 
 @Component({
@@ -13,37 +15,13 @@ export class AudioInputComponent implements OnInit {
 
   public source: SafeUrl = '';
   public message: string;
-  stream: MediaStream;
-  mediaRecorder: MediaRecorder;
-  audioChunks: any[];
-  recording: boolean = false;
-  blob: Blob; //data for server
+  recording = false;
 
 
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer, private _audioRecorder: AudioRecorderService) { }
 
   ngOnInit() {
-    navigator.mediaDevices.getUserMedia({ audio: true})
-    .then(stream => {
-      this.stream = stream;
-      this.mediaRecorder = new MediaRecorder(stream);
-      this.mediaRecorder.ondataavailable = e => { 
-        if(this.mediaRecorder.state ==  'inactive') {
-          this.blob = e.data;  
-          const reader = new FileReader();
-          reader.readAsDataURL(this.blob);
-          reader.onload = (_event) => {
-            const result = reader.result.toString();      
-            const sanitizeUrl = this._sanitizer.bypassSecurityTrustUrl(result);
-            this.source = sanitizeUrl;
-            console.log(this.source);
-          }
-        }
-      }
-    })
-    .catch(function(err) {
-      console.log(err.message);
-    });
+    this._audioRecorder.init();
   }
 
 
@@ -69,14 +47,15 @@ export class AudioInputComponent implements OnInit {
   }
 
   public recordAudio() {
-    if(this.mediaRecorder.state =='recording') {
-      this.mediaRecorder.stop();
+    if (this.recording) {
+      this._audioRecorder.stopRecording();
+      this.recording = false;
       console.log('stop');
-      
-    }
-    else {
-      this.mediaRecorder.start();
-      console.log('start');      
+      this.source = this._audioRecorder.getAudio();
+    } else {
+      this._audioRecorder.startRecording();
+      this.recording = true;
+      console.log('start');
     }
   }
 
