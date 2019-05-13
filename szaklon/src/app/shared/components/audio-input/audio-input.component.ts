@@ -15,7 +15,7 @@ export class AudioInputComponent implements OnInit {
 
   public source: SafeUrl = '';
   private recording = false;
-  blob: Blob;
+  file: File;
 
   constructor(private _sanitizer: DomSanitizer, private _audioRecorder: AudioRecorderService) { }
 
@@ -23,8 +23,8 @@ export class AudioInputComponent implements OnInit {
     this._audioRecorder.init();
     this._audioRecorder.UrlReady.subscribe(url => {
       this.source = url;
-      this.blob = this._audioRecorder.getFile();
-      console.log(this.blob);
+      this.file = this._audioRecorder.getFile();
+      console.log(this.file);
     });
   }
 

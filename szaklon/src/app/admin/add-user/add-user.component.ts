@@ -14,7 +14,6 @@ export class AddUserComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
-  returnUrl: string;
 
   constructor(private _toast: ToastService,
     private _formBuilder: FormBuilder,
@@ -24,15 +23,16 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser() {
-    this._usersService.addUser({
-      login: this.addUserForm.get('username').value,
-      password: this.addUserForm.get('password').value
-    }).subscribe(token => {
-        this._toast.success('Success');
-        this.addUserForm.reset();
-    }, err => {
-      this._toast.error('Something went wrong. Please try again later.');
-    });
+    if (this.addUserForm.valid) {
+      this._usersService.addUser({
+        login: this.addUserForm.get('username').value,
+        password: this.addUserForm.get('password').value
+      }).subscribe(token => {
+          this._toast.success('Success');
+          this.addUserForm.reset();
+      }, err => {
+        this._toast.error('Something went wrong. Please try again later.');
+      });
+    }
   }
-
 }

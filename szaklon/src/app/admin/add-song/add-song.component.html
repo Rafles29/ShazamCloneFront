@@ -1,3 +1,52 @@
-<p>
-  add-song works!
-</p>
+<!-- Material form login -->
+<div class="mx-auto mt-3 container-mw-40" >
+  <mdb-card>
+  
+    <mdb-card-header class="info-color white-text text-center py-4">
+      <h5>
+        <strong>Add Song</strong>
+      </h5>
+    </mdb-card-header>
+  
+  
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5 pt-0">
+  
+      <!-- Form -->
+      <form class="text-center" style="color: #757575;" [formGroup]="addSongForm" (ngSubmit)="addSong()">
+  
+        <!-- Title -->
+        <div class="md-form">
+          <input type="text" id="materialLoginFormTitle" class="form-control" formControlName="title" mdbInput>
+          <label for="materialLoginFormTitle">Title</label>
+        </div>
+
+        <!-- artist -->
+        <div class="md-form">
+          <input type="text" id="materialLoginFormArtist" class="form-control" formControlName="artist" mdbInput>
+          <label for="materialLoginFormArtist">Artist</label>
+        </div>
+  
+        <div class="file-field big">
+          <a class="btn-floating btn-lg amber darken-2 mt-0 float-left">
+            <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+            <input type="file" accept='audio/*' multiple #audioInput (change)="showPreview(audioInput.files)" formControlName="file">
+          </a>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files" (change)="showPreview(audioInput.files)" formControlName="file">
+          </div>
+        </div>
+        <audio #audio [src]="source"  class="w-100" controls></audio>
+  
+        <!-- Sign in button -->
+        <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+          type="submit">Add song</button>
+  
+      </form>
+      <!-- Form -->
+  
+    </mdb-card-body>
+  
+  </mdb-card>
+  </div>
+  <!-- Material form login -->

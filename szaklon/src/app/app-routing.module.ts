@@ -8,6 +8,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { AddUserComponent } from './admin/add-user/add-user.component';
+import { AddSongComponent } from './admin/add-song/add-song.component';
 
 
 const appRoutes: Routes = [
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: UserListComponent/*, canActivate: [AdminGuard] */},
   { path: 'admin/users/add', component: AddUserComponent/*, canActivate: [AdminGuard] */},
+  { path: 'admin/songs/add', component: AddSongComponent /*, canActivate: [AdminGuard] */},
   { path: '', component: HomepageComponent },
 ];
 
