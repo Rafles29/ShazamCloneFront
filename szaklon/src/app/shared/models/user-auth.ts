@@ -1,4 +1,4 @@
 export interface UserAuth {
     token: string;
-    admin: boolean;
+    is_admin: boolean;
 }

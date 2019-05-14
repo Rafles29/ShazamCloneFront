@@ -1,3 +1,4 @@
+import { UserAuth } from './../models/user-auth';
 import { UserLogin } from '../models/user-login.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
@@ -5,7 +6,6 @@ import { tap, catchError, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserRegister } from '../models/user-register.model';
-import { UserAuth } from '../models/user-auth';
 
 const TOKEN_KEY = 'Token';
 const USERNAME_KEY = 'Username';
@@ -20,7 +20,7 @@ export class AuthenticationService {
 
   constructor(private _http: HttpClient) { }
 
-  login(userCredentials: UserLogin): Observable<string> {
+  loginOld(userCredentials: UserLogin): Observable<string> {
 
     return this._http.post(environment.baseUrl + environment.loginUrl, userCredentials, {responseType: 'text'})
     .pipe(tap(token => {
@@ -33,13 +33,11 @@ export class AuthenticationService {
     }));
   }
 
-  login2(userCredentials: UserLogin): Observable<UserAuth> {
+  login(userCredentials: UserLogin): Observable<UserAuth> {
 
     return this._http.post<UserAuth>(environment.baseUrl + environment.loginUrl, userCredentials)
     .pipe(tap(res => {
-      console.log(res.token);
-      console.log(res.admin);
-      this.saveUser(userCredentials.login, res.token, res.admin);
+      this.saveUser(userCredentials.login, res.token, res.is_admin);
     }))
     .pipe(catchError(err => {
       this.loggedInSubject.next(false);
@@ -51,6 +49,7 @@ export class AuthenticationService {
     this._http.post(environment.baseUrl + environment.logoutUrl, null).subscribe(response => {
       this.deleteUser();
     }, err => {
+      this.deleteUser();
       console.log(err);
     });
   }
