@@ -20,19 +20,6 @@ export class AuthenticationService {
 
   constructor(private _http: HttpClient) { }
 
-  loginOld(userCredentials: UserLogin): Observable<string> {
-
-    return this._http.post(environment.baseUrl + environment.loginUrl, userCredentials, {responseType: 'text'})
-    .pipe(tap(token => {
-      console.log(token);
-      this.saveUser(userCredentials.login, token);
-    }))
-    .pipe(catchError(err => {
-      this.loggedInSubject.next(false);
-      return this.handleError(err);
-    }));
-  }
-
   login(userCredentials: UserLogin): Observable<UserAuth> {
 
     return this._http.post<UserAuth>(environment.baseUrl + environment.loginUrl, userCredentials)
