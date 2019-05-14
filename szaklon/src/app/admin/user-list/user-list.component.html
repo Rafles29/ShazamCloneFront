@@ -33,9 +33,9 @@
                     <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                   </a>
                 </th>
-                <th>
+                <!-- <th>
                   Edit
-                </th>
+                </th> -->
                 <th>
                   Delete
                 </th>
@@ -51,11 +51,11 @@
               <tr *ngFor="let user of filteredUsers;let i = index">
                 <td>{{user.id}}</td>
                 <td>{{user.login}}</td>
-                <td>
+                <!-- <td>
                   <button type="button" mdbBtn color="warning" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
                     <mdb-icon fas icon="pencil-alt" class="mt-0"></mdb-icon>
                   </button>
-                </td>
+                </td> -->
                 <td>
                   <button type="button" mdbBtn color="danger" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
                     <mdb-icon fas icon="times" class="mt-0"></mdb-icon>
@@ -74,4 +74,46 @@
           </div>
         </div>
       </mdb-card>
-  </div>
+      <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+      mdbWavesEffect>Launch Modal</button>
+    
+    <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Logs</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+    
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Action</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>100$</td>
+
+                </tr>
+              </tbody>
+            </table>
+    
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,13 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="md-form">
+        <input type="text" class="form-control" id="search" mdbInput [(ngModel)]='listFilter'>
+        <label for="search">Search</label>
+      </div>
+    </div>
+  </div>
+  <h1>Songs</h1>
+  <br>
+  <app-song-list [songs]="filteredSong"></app-song-list>
+</div>
