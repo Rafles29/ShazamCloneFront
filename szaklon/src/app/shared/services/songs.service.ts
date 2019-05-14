@@ -91,7 +91,7 @@ export class SongsService {
 
     return of(songs);
   }
-  
+ 
   public getHistory(): Observable<Song[]> {
     return this._http.get<Song[]>(environment.baseUrl + environment.historyUrl);
   }
