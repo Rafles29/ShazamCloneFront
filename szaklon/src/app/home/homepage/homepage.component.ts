@@ -32,7 +32,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this._songs.getMostPopularSongs().subscribe(
       mostPopularSongs => {
-        this.mostPopularSongs = mostPopularSongs;
+        this.mostPopularSongs = mostPopularSongs.slice(0, 3);
       }
     )
   }
