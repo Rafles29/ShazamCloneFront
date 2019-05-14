@@ -5,9 +5,25 @@
 
   <hr class="my-5">
 
-  <h1>Most popular searches</h1>
+  <div class="switch square blue-white-switch" *ngIf="loggedIn">
+    <label>
+      Popular
+      <input type="checkbox" (change)="toggleHistory($event)">
+      <span class="lever"></span>
+      History
+    </label>
+  </div>
 
-  <app-song-list [songs]="mostPopularSongs"></app-song-list>
+  <div *ngIf="!showHistory">
+    <h1>Most popular searches</h1>
+    <app-song-list [songs]="mostPopularSongs"></app-song-list>
+  </div>
+
+  <div *ngIf="showHistory && loggedIn">
+    <h1>History</h1>
+    <app-song-list [songs]="history"></app-song-list>
+  </div>
+
 
   <hr class="my-5">
 

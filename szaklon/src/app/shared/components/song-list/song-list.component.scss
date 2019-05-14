@@ -3,3 +3,23 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.card-container {
+  @media (max-width: 767px) {
+    margin-bottom: 15px;
+  }
+
+  .card {
+    height: 100%;
+  }
+}
+
+.row {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 767px) {
+    margin-bottom: 0;
+  }
+}
