@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080/',
   loginUrl: 'login',
-  logoutUrl: 'logout'
+  logoutUrl: 'logout',
+  historyUrl: 'history'
 };
 
 /*

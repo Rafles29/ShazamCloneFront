@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/services/authentication.service';
 import { SongsService } from './../../shared/services/songs.service';
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
@@ -10,24 +11,12 @@ import { Song } from 'src/app/shared/models/song.model';
 })
 export class HomepageComponent implements OnInit {
 
-  playlist: Track[] = [
-    {
-      title: 'Behind Enemy Lines',
-      link: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
-    },
-    {
-      title: 'Big Eyes',
-      link: 'https://freepd.com/music/Big%20Eyes.mp3'
-    },
-    {
-      title: 'Epic Boss Battle',
-      link: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
-    }
-  ];
-
+  loggedIn: boolean;
+  showHistory: boolean;
   mostPopularSongs: Song[];
+  history: Song[];
 
-  constructor(private _songs: SongsService) { }
+  constructor(private _songs: SongsService, private _auth: AuthenticationService) { }
 
   ngOnInit() {
     this._songs.getMostPopularSongs().subscribe(
@@ -35,6 +24,19 @@ export class HomepageComponent implements OnInit {
         this.mostPopularSongs = mostPopularSongs;
       }
     )
+
+    this._auth.isLoggedIn().subscribe(newValue => {
+      this.loggedIn = newValue;
+      if (this.loggedIn) {
+        this._songs.getHistory().subscribe(history => {
+          this.history = history;
+        })
+      }
+    })
+  }
+
+  toggleHistory(event) {
+    this.showHistory = event.target.checked;
   }
 
 }

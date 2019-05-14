@@ -1,27 +1,26 @@
 <div class='container'>
-  <audio #audio [src]="source"  class="w-100" controls>
-  </audio>
   <form class="md-form">
     <div class="file-field big">
       <a class="btn-floating btn-lg amber darken-2 mt-0 float-left">
         <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-        <input type="file" accept='audio/*' multiple #audioInput (change)="showPreview(audioInput.files)">
+        <input type="file" accept='audio/*' #audioInput (change)="showPreview(audioInput.files)">
       </a>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files" (change)="showPreview(audioInput.files)">
+        <input class="file-path validate" readonly type="text" [placeholder]="file?.name || 'Upload a file'">
       </div>
     </div>
     <div class='file-field big'>
-      <a class="btn-floating btn-lg darken-2 mt-0 float-left" 
-      [ngClass]="(isRecording)?'red':'green'"
-      (click)="recordAudio()">
+      <a class="btn-floating btn-lg darken-2 mt-0 float-left" [ngClass]="(isRecording)?'red':'green'"
+        (click)="recordAudio()">
         <i class="fas fa-microphone"></i>
       </a>
       <div class="file-path-wrapper">
-          <!-- <i class="fas fa-stop-circle fa-2x"></i> -->
-        <input class="file-path validate" readonly  type="text" placeholder="Press microphone to record">
+        <!-- <i class="fas fa-stop-circle fa-2x"></i> -->
+        <input class="file-path validate" readonly type="text" placeholder="Press microphone to record">
       </div>
     </div>
+    <audio #audio class="w-100" [src]="source" controls>
+    </audio>
+    <button type="button" (click)="recognize($event)">Recognize</button>
   </form>
 </div>
-  

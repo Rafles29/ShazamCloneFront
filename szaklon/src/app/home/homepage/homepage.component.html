@@ -1,16 +1,27 @@
 <hr>
 <div class="container">
   <app-audio-input></app-audio-input>
-  <mat-basic-audio-player [audioUrl]="'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'" [title]="'Behind Enemy Lines'" [displayTitle]="true"></mat-basic-audio-player>
 
   <hr class="my-5">
 
-  <h1>Most popular searches</h1>
+  <div class="switch square blue-white-switch" *ngIf="loggedIn">
+    <label>
+      Popular
+      <input type="checkbox" (change)="toggleHistory($event)">
+      <span class="lever"></span>
+      History
+    </label>
+  </div>
 
-  <app-song-list [songs]="mostPopularSongs"></app-song-list>
+  <div *ngIf="!showHistory">
+    <h1>Most popular searches</h1>
+    <app-song-list [songs]="mostPopularSongs"></app-song-list>
+  </div>
 
-  <hr class="my-5">
-
+  <div *ngIf="showHistory && loggedIn">
+    <h1>History</h1>
+    <app-song-list [songs]="history"></app-song-list>
+  </div>
 
 </div>
 
