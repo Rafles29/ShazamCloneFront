@@ -48,4 +48,10 @@ export class AudioInputComponent implements OnInit {
     }
   }
 
+  recognize(event: Event) {
+    event.preventDefault();
+    console.log(this.file);
+    console.log(this.source);
+  }
+
 }
