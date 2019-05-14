@@ -16,6 +16,7 @@ export class AudioInputComponent implements OnInit {
   public source: SafeUrl = '';
   private recording = false;
   file: File;
+  isRecording = false;
 
   constructor(private _sanitizer: DomSanitizer, private _audioRecorder: AudioRecorderService) { }
 
@@ -35,10 +36,12 @@ export class AudioInputComponent implements OnInit {
 
   public recordAudio() {
     if (this.recording) {
+      this.isRecording = false;
       this._audioRecorder.stopRecording();
       this.recording = false;
       console.log('stop');
     } else {
+      this.isRecording = true;
       this._audioRecorder.startRecording();
       this.recording = true;
       console.log('start');

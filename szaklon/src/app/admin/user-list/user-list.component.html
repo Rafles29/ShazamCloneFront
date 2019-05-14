@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-12 mx-auto">
         <div class="md-form">
-          <input type="text" class="form-control" id="search" mdbInput>
+          <input type="text" class="form-control" id="search" mdbInput [(ngModel)]='listFilter'>
           <label for="search">Search</label>
         </div>
       </div>
@@ -48,7 +48,7 @@
       
               <!--Table body-->
               <tbody>
-              <tr *ngFor="let user of users;let i = index">
+              <tr *ngFor="let user of filteredUsers;let i = index">
                 <td>{{user.id}}</td>
                 <td>{{user.login}}</td>
                 <td>

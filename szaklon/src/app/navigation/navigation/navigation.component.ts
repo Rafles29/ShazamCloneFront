@@ -27,7 +27,7 @@ export class NavigationComponent implements OnInit {
 
   logout() {
     this._auth.logout();
-    this.toast.success('zostałeś wylogowany')
+    this.toast.success('zostałeś wylogowany');
   }
 
 }
