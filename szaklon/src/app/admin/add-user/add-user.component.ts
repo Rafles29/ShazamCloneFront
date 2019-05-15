@@ -28,10 +28,10 @@ export class AddUserComponent implements OnInit {
         login: this.addUserForm.get('username').value,
         password: this.addUserForm.get('password').value
       }).subscribe(token => {
-          this._toast.success('Success');
+          this._toast.success('User added successfully');
           this.addUserForm.reset();
       }, err => {
-        this._toast.error('Something went wrong. Please try again later.');
+        this._toast.error('Could not add user, try different username');
       });
     }
   }

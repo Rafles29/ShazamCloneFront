@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,7 @@ export class UserListComponent implements OnInit {
     this.filteredUsers = this.listFilter ? this.performFilter(this.listFilter) : this.users;
   }
 
-  constructor(private _userService: UsersService) {
+  constructor(private _userService: UsersService, private _toaster: ToastService) {
   }
 
   ngOnInit() {
@@ -55,7 +56,15 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    this._userService.deleteUser(user);
+    this._userService.deleteUser(user).subscribe(deleted => {
+      if(deleted) {
+        this._toaster.success('Deleted successfully');
+      } else {
+        this._toaster.error('Could not delete user');
+      }
+    }, error => {
+      this._toaster.error('Something went wrong, please try again later');
+    });
   }
 
 }

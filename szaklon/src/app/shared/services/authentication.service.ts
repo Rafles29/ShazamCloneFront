@@ -37,7 +37,6 @@ export class AuthenticationService {
       this.deleteUser();
     }, err => {
       this.deleteUser();
-      console.log(err);
     });
   }
 

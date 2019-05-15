@@ -39,10 +39,10 @@ export class RegisterComponent implements OnInit {
         password: this.registerForm.get('password').value,
         passwordRepeat: this.registerForm.get('passwordRepeat').value
       }).subscribe(registered => {
-          this.toast.success('Success');
+          this.toast.success('Registered successfully');
           this._router.navigateByUrl('/login');
       }, err => {
-        this.toast.error('Something went wrong. Please try again later.');
+        this.toast.error('Something went wrong, please try again later');
       });
     }
   }

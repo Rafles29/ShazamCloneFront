@@ -20,12 +20,10 @@ export class ProfileComponent implements OnInit {
   deleteAccount() {
     this._auth.deleteAccount().subscribe(response => {
       if (response) {
-        this.toast.success("konto zostało usunięte")
+        this.toast.success('Account deleted')
         this._router.navigateByUrl('/');
       } else {
-        // TODO toaster
-        this.toast.error("nie udalo sie usunac konta")
-        console.log('nie udalo sie usunac konta');
+        this.toast.error('Could not delete account')
       }
     });
   }

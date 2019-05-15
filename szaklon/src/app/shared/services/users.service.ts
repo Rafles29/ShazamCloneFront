@@ -31,6 +31,7 @@ export class UsersService {
       return this.handleError(err);
     }));
     */
+   // MOCK
     if (user.password.length > 3) {
       this.users.push({id: Math.floor(Math.random() * 987654321) + 123456789, login: user.login});
       return of(true);
@@ -39,9 +40,13 @@ export class UsersService {
     }
   }
 
-  deleteUser(user: User) {
+  // returns true if deleted successfully
+  deleteUser(user: User): Observable<boolean> {
     // TODO replace mock with real code
+
+    // MOCK
     this.users.splice(this.users.indexOf(user), 1);
+    return of(true);
   }
 
   handleError(error) {

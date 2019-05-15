@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
       login: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     }).subscribe(token => {
-        this.toast.success('Success');
+        this.toast.success('Logged in');
         this._router.navigate([this.returnUrl]);
     }, err => {
-      this.toast.error('Something went wrong. Please try again later.');
+      this.toast.error('Invalid credentials');
     });
   }
 }

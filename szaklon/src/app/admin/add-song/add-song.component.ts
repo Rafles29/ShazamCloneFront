@@ -45,10 +45,10 @@ export class AddSongComponent implements OnInit {
         artist: this.addSongForm.get('artist').value,
         file: this.file
       }).subscribe(token => {
-          this._toast.success('Success');
+          this._toast.success('Song added successfully');
           this.addSongForm.reset();
       }, err => {
-        this._toast.error('Something went wrong. Please try again later.');
+        this._toast.error('Something went wrong, please try again later');
       });
     }
 
