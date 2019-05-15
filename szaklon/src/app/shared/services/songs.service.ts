@@ -5,6 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Song } from '../models/song.model';
 import { SongForm } from '../models/song-form.model';
+import { SELECT_PANEL_INDENT_PADDING_X, SELECT_PANEL_PADDING_X } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -123,18 +124,32 @@ export class SongsService {
     }
   }
 
-  public recognize(song): Observable<Song> {
+  public recognize(song): Observable<Song[]> {
     // TODO replace mock with real code like the one below
-    // return this._http.post<Song>(environment.baseUrl + environment.recognizeUrl, song);
+    // return this._http.post<Song[]>(environment.baseUrl + environment.recognizeUrl, song);
 
     // MOCK
-    const match: Song = {
-      title: 'Behind Enemy Lines',
-      artist: 'Rafael Krux',
-      audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-      genre: 'Epic'
-    }
+    const matches: Song[] = [
+      {
+        title: 'Behind Enemy Lines',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+        genre: 'Epic'
+      },
+      {
+        title: 'Big Eyes',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
+        genre: 'Epic'
+      },
+      {
+        title: 'Epic Boss Battle',
+        artist: 'Rafael Krux',
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
+      }
+    ];
 
-    return of(match);
+    return of(matches);
   }
 }

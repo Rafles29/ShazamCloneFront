@@ -21,6 +21,34 @@
     </div>
     <audio #audio class="w-100" [src]="source" controls>
     </audio>
-    <button mdbBtn type="button" gradient="blue" size="lg" rounded="true" mdbWavesEffect (click)="recognize()" [disabled]="!fileValid">Recognize</button>
+    <button mdbBtn class="centered" type="button" gradient="blue" size="lg" rounded="true" mdbWavesEffect (click)="recognize()" [disabled]="!fileValid">Recognize</button>
   </form>
+
+
+  <div class="" mdbCollapse #matchedSongContainer="bs-collapse">
+    <h2>
+      Top match
+    </h2>
+    <div class="card top-match">
+        <mdb-card-body>
+          <div>
+            <mdb-card-title>
+              <h5>{{ topMatchedSong?.title }}</h5>
+            </mdb-card-title>
+            <mdb-card-text>
+              <small class="text-muted">by {{ topMatchedSong?.artist }}</small>
+              <small class="text-muted">Genre: {{ topMatchedSong?.genre }}</small>
+            </mdb-card-text>
+          </div>
+          <audio class="w-100" controls>
+            <source [src]="topMatchedSong?.audioUrl">
+            Your browser does not support audio element.
+          </audio>
+        </mdb-card-body>
+      </div>
+    <h3>
+      Further possible matches
+    </h3>
+    <app-song-list [songs]="otherMatchedSongs"></app-song-list>
+  </div>
 </div>

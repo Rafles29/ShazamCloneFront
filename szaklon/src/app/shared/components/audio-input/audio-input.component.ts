@@ -1,9 +1,10 @@
+import { Song } from 'src/app/shared/models/song.model';
 import { SongsService } from './../../services/songs.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IfStmt } from '@angular/compiler';
 import { AudioRecorderService } from '../../services/audio-recorder.service';
-import { ToastService } from 'ng-uikit-pro-standard';
+import { ToastService, CollapseComponent } from 'ng-uikit-pro-standard';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class AudioInputComponent implements OnInit {
 
   @ViewChild('audio') audio: ElementRef;
   @ViewChild('audioInput') audioInput: ElementRef;
+  @ViewChild(CollapseComponent) matchedSongContainer: CollapseComponent;
 
   public source: SafeUrl = '';
   private recording = false;
@@ -22,13 +24,15 @@ export class AudioInputComponent implements OnInit {
   private blob: Blob;
   isRecording = false;
   fileValid: boolean;
+  topMatchedSong: Song;
+  otherMatchedSongs: Song[];
 
   constructor(
     private _sanitizer: DomSanitizer,
     private _audioRecorder: AudioRecorderService,
     private _songs: SongsService,
     private _toast: ToastService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this._audioRecorder.init();
@@ -57,7 +61,7 @@ export class AudioInputComponent implements OnInit {
       this.recording = false;
       console.log('stop');
       this.audioInput.nativeElement.value = null;
-      
+
     } else {
       this.isRecording = true;
       this._audioRecorder.startRecording();
@@ -69,10 +73,15 @@ export class AudioInputComponent implements OnInit {
   recognize() {
     console.log(this.file);
     console.log(this.source);
-    this._songs.recognize(this.blob).subscribe(response => {
-      console.log(response);
+    this.matchedSongContainer.hide();
+
+    this._songs.recognize(this.blob).subscribe(matchedSongs => {
+      console.log(matchedSongs);
+      this.topMatchedSong = matchedSongs[0];
+      this.otherMatchedSongs = matchedSongs.slice(1);
+      this.matchedSongContainer.show();
     }, error => {
-      console.log(error);
+      this._toast.error('No song could be matched');
 
     })
   }

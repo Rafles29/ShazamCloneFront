@@ -1,7 +1,7 @@
 <hr>
 <div class="container">
   <h1>
-    Recognize songs by uploading or recording
+    Uploading or record
   </h1>
   <app-audio-input></app-audio-input>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div *ngIf="showHistory && loggedIn">
-    <h1>History</h1>
+    <h1>Your top match history</h1>
     <app-song-list [songs]="history"></app-song-list>
   </div>
 
