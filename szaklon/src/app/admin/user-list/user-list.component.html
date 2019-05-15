@@ -62,7 +62,7 @@
                   </button>
                 </td>
                 <td>
-                  <button type="button" mdbBtn color="success" outline="true" rounded="true" size="sm" class="px-2" mdbWavesEffect>
+                  <button type="button" mdbBtn color="success" outline="true" rounded="true" size="sm" class="px-2" (click)="frame.show()" mdbWavesEffect>
                     <mdb-icon fas icon="info-circle" class="mt-0"></mdb-icon>
                   </button>
                 </td>
@@ -74,12 +74,10 @@
           </div>
         </div>
       </mdb-card>
-      <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-      mdbWavesEffect>Launch Modal</button>
-    
+    <!--Modal-->
     <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <!--Header-->
           <div class="modal-header">
@@ -90,25 +88,7 @@
           </div>
           <!--Body-->
           <div class="modal-body">
-    
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Action</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Product 1</td>
-                  <td>100$</td>
-
-                </tr>
-              </tbody>
-            </table>
-    
+            <app-user-logs></app-user-logs>
           </div>
           <!--Footer-->
           <div class="modal-footer">

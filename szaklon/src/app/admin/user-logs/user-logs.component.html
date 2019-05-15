@@ -1,3 +1,24 @@
-<p>
-  user-logs works!
-</p>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>
+            <a (click)="sortBy('id')">Id
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>
+        </th>
+        <th>Action</th>
+        <th>
+            <a (click)="sortBy('date')">Date
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </a>  
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs">
+        <th>{{log.id}}</th>
+        <td>{{log.action}}</td>
+        <td>{{log.date | date:'yyyy-MM-dd'}}</td>
+      </tr>
+    </tbody>
+  </table>
