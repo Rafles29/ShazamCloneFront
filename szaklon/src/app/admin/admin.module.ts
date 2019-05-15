@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserLogsComponent } from './user-logs/user-logs.component';
+import { LogsComponent } from './logs/logs.component';
 import { AddSongComponent } from './add-song/add-song.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -12,7 +12,7 @@ import { SongListComponent } from '../shared/components/song-list/song-list.comp
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [UserLogsComponent, AddSongComponent, UserListComponent, AddUserComponent, AdminSongListComponent],
+  declarations: [LogsComponent, AddSongComponent, UserListComponent, AddUserComponent, AdminSongListComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro,

@@ -1,3 +1,4 @@
+import { LogsComponent } from './admin/logs/logs.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './account/login/login.component';
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'admin/users/add', component: AddUserComponent/*, canActivate: [AdminGuard] */},
   { path: 'admin/songs', component: AdminSongListComponent /*, canActivate: [AdminGuard] */},
   { path: 'admin/songs/add', component: AddSongComponent /*, canActivate: [AdminGuard] */},
+  { path: 'admin/logs', component: LogsComponent /*, canActivate: [AdminGuard] */},
   { path: '', component: HomepageComponent },
 ];
 

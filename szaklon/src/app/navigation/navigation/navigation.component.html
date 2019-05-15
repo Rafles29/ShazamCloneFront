@@ -8,19 +8,20 @@
   <links>
 
       <!-- Links -->
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto" *ngIf="!loggedIn">
         <li class="nav-item" *ngIf="!loggedIn">
             <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect>Login</a>
         </li>
         <li class="nav-item" *ngIf="!loggedIn">
             <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect>Register</a>
         </li>
-
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="loggedIn">
         <!-- Dropdown -->
         <!-- with ngIf
         <li class="nav-item dropdown" dropdown *ngIf="loggedIn && admin">
         -->
-        <li class="nav-item dropdown" dropdown *ngIf="loggedIn && admin">
+        <li class="nav-item dropdown" dropdown *ngIf="admin">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>Admin panel<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/users">Users</a>
@@ -28,11 +29,13 @@
                 <div class="divider dropdown-divider"></div>
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/songs">Songs</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/songs/add">Add Song</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/logs">Logs</a>
             </div>
         </li>
 
           <!-- Dropdown -->
-          <li class="nav-item dropdown" dropdown *ngIf="loggedIn">
+          <li class="nav-item dropdown" dropdown>
               <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>{{ username }}<span class="caret"></span></a>
               <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-menu-right" role="menu" >
                   <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/profile">Profile</a>
@@ -40,7 +43,6 @@
                   <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()" routerLink="/">Logout</a>
               </div>
           </li>
-
       </ul>
       <!-- Links -->
 
