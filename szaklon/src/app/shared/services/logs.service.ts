@@ -10,11 +10,11 @@ import { Log } from '../models/log-model';
 export class LogsService {
 
   private logs: Log[] = [
-    {id: 1, action: 'LogIn success', date: new Date('2018-04-10')},
-    {id: 2, action: 'LogIn Error', date: new Date('2018-04-10')},
-    {id: 3, action: 'LogIn Error', date: new Date('2018-04-09')},
-    {id: 4, action: 'LogIn success', date: new Date('2018-04-09')},
-    {id: 5, action: 'LogIn success', date: new Date('2018-04-09')},
+    {id: 1, action: 'LogIn success', date: new Date('2018-04-10 11:15:55')},
+    {id: 2, action: 'LogIn Error', date: new Date('2018-04-10 11:15:38')},
+    {id: 3, action: 'LogIn Error', date: new Date('2018-04-09 21:00:22')},
+    {id: 4, action: 'LogIn success', date: new Date('2018-04-09 16:40:20')},
+    {id: 5, action: 'LogIn success', date: new Date('2018-04-09 15:12:00')},
   ];
 
   constructor(private _http: HttpClient) { }
