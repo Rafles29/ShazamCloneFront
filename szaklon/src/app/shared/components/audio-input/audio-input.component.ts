@@ -14,6 +14,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 export class AudioInputComponent implements OnInit {
 
   @ViewChild('audio') audio: ElementRef;
+  @ViewChild('audioInput') audioInput: ElementRef;
 
   public source: SafeUrl = '';
   private recording = false;
@@ -55,6 +56,8 @@ export class AudioInputComponent implements OnInit {
       this._audioRecorder.stopRecording();
       this.recording = false;
       console.log('stop');
+      this.audioInput.nativeElement.value = null;
+      
     } else {
       this.isRecording = true;
       this._audioRecorder.startRecording();

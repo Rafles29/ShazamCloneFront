@@ -3,7 +3,7 @@
     <div class="file-field big">
       <a class="btn-floating btn-lg amber darken-2 mt-0 float-left">
         <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-        <input type="file" accept='audio/*' #audioInput (change)="showPreview(audioInput.files)">
+        <input type="file" accept='audio/*' #audioInput (input)="showPreview(audioInput.files)">
       </a>
       <div class="file-path-wrapper">
         <input class="file-path validate" readonly type="text" [placeholder]="file?.name || 'Upload a file'">
