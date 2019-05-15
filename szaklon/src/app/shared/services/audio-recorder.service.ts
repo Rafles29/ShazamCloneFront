@@ -31,17 +31,19 @@ export class AudioRecorderService {
           this.wrongType.emit('Incorrect file type');
           return;
         }
+        this.reader.readAsDataURL(this.file);
+      } else {
+        this.UrlReady.emit(this.audio);
       }
 
-      this.UrlReady.emit(this.audio);
     };
    }
 
-  init() {
-    navigator.mediaDevices.getUserMedia({ audio: true})
-    .then(stream => {
-      this.stream = stream;
-      this.mediaRecorder = new MediaRecorder(stream);
+   init() {
+     navigator.mediaDevices.getUserMedia({ audio: true})
+     .then(stream => {
+       this.stream = stream;
+       this.mediaRecorder = new MediaRecorder(stream);
       this.mediaRecorder.ondataavailable = e => {
         if (this.mediaRecorder.state ===  'inactive') {
           this.file = this.blobToFile(e.data, this.uniqueId());
@@ -86,7 +88,6 @@ export class AudioRecorderService {
 
 
 
-    //  this.reader.readAsDataURL(this.file);
   }
 
   private blobToFile = (theBlob: Blob, fileName: string): File => {
