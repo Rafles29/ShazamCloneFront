@@ -40,7 +40,6 @@ export class AudioInputComponent implements OnInit {
       this.source = url;
       this.file = this._audioRecorder.getFile();
       this.blob = this._audioRecorder.getBlob();
-      console.log(this.file);
       this.fileValid = true;
     });
 
@@ -59,24 +58,18 @@ export class AudioInputComponent implements OnInit {
       this.isRecording = false;
       this._audioRecorder.stopRecording();
       this.recording = false;
-      console.log('stop');
       this.audioInput.nativeElement.value = null;
-
     } else {
       this.isRecording = true;
       this._audioRecorder.startRecording();
       this.recording = true;
-      console.log('start');
     }
   }
 
   recognize() {
-    console.log(this.file);
-    console.log(this.source);
     this.matchedSongContainer.hide();
 
     this._songs.recognize(this.blob).subscribe(matchedSongs => {
-      console.log(matchedSongs);
       this.topMatchedSong = matchedSongs[0];
       this.otherMatchedSongs = matchedSongs.slice(1);
       this.matchedSongContainer.show();

@@ -26,8 +26,8 @@ export class AudioRecorderService {
       this.audio = sanitizeUrl;
     };
     this.reader.onloadend = () => {
-      if(this.reader.result instanceof ArrayBuffer) {
-        if(!fileType(this.reader.result).mime.startsWith('audio')) {
+      if (this.reader.result instanceof ArrayBuffer) {
+        if (!fileType(this.reader.result).mime.startsWith('audio')) {
           this.wrongType.emit('Incorrect file type');
           return;
         }
@@ -37,24 +37,24 @@ export class AudioRecorderService {
       }
 
     };
-   }
+  }
 
-   init() {
-     navigator.mediaDevices.getUserMedia({ audio: true})
-     .then(stream => {
-       this.stream = stream;
-       this.mediaRecorder = new MediaRecorder(stream);
-      this.mediaRecorder.ondataavailable = e => {
-        if (this.mediaRecorder.state ===  'inactive') {
-          this.file = this.blobToFile(e.data, this.uniqueId());
-          this.blob = e.data;
-          this.reader.readAsDataURL(e.data);
-        }
-      };
-    })
-    .catch(function(err) {
-      console.log(err.message);
-    });
+  init() {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        this.stream = stream;
+        this.mediaRecorder = new MediaRecorder(stream);
+        this.mediaRecorder.ondataavailable = e => {
+          if (this.mediaRecorder.state === 'inactive') {
+            this.file = this.blobToFile(e.data, this.uniqueId());
+            this.blob = e.data;
+            this.reader.readAsDataURL(e.data);
+          }
+        };
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
   startRecording() {
     this.mediaRecorder.start();
@@ -74,17 +74,17 @@ export class AudioRecorderService {
   getUrlFromFiles(files): SafeUrl {
     if (files.length === 0) {
       return;
-     }
+    }
 
-     const mimeType = files[0].type;
-     if (mimeType.match(/audio\/*/) == null) {
-       return;
-     }
-     this.file = files[0];
+    const mimeType = files[0].type;
+    if (mimeType.match(/audio\/*/) == null) {
+      return;
+    }
+    this.file = files[0];
 
 
-     const chunk: Blob = this.file.slice(0, fileType.minimumBytes);
-     this.reader.readAsArrayBuffer(chunk)
+    const chunk: Blob = this.file.slice(0, fileType.minimumBytes);
+    this.reader.readAsArrayBuffer(chunk)
 
 
 

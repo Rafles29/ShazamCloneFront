@@ -112,7 +112,8 @@ export class SongsService {
 
   addSong(song: SongForm): Observable<Song | {}> {
     // TODO replace mock with real code
-    console.log(song);
+
+    // MOCK
     if (song.file.name.length > 0 && song.artist.length > 3) {
       return of({
         title: song.title,

@@ -43,7 +43,6 @@ export class AuthenticationService {
   register(registerCredentials: UserRegister): Observable<boolean> {
     // TODO replace mock with real code
 
-    console.log(registerCredentials);
     // MOCK
     if (registerCredentials.password.length > 3) {
       return of(true);
@@ -56,7 +55,6 @@ export class AuthenticationService {
   deleteAccount(): Observable<boolean> {
     // TODO replace mock with real code
 
-    console.log('deleting...');
     // MOCK
     this.deleteUser();
     this.loggedInSubject.next(false);
@@ -72,7 +70,6 @@ export class AuthenticationService {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 

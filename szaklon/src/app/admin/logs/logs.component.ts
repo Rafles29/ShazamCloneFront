@@ -26,8 +26,6 @@ export class LogsComponent implements OnInit {
 
   ngOnInit() {
     this._logService.getLogs().subscribe(logs => {
-      console.log(logs);
-
       this.logs = logs;
       this.filteredLogs = logs;
     });
