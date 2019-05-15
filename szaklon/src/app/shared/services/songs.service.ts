@@ -97,9 +97,9 @@ export class SongsService {
       },
       {
         title: 'test',
-        artist: 'Rafael Krux',
+        artist: 'Andrzej',
         audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
+        genre: 'Garage'
       }
     ];
 
