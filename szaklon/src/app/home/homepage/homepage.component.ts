@@ -30,7 +30,9 @@ export class HomepageComponent implements OnInit {
       if (this.loggedIn) {
         this._songs.getHistory().subscribe(history => {
           this.history = history;
-        })
+        });
+      } else {
+        this.showHistory = false;
       }
     })
   }
