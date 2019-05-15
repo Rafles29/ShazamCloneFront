@@ -24,6 +24,7 @@ export class UsersService {
   }
 
   addUser(user: UserLogin): Observable<boolean | {}> {
+    // TODO replace mock with real code
     /*
     return this._http.post<boolean>(environment.baseUrl + 'users', user)
     .pipe(catchError(err => {
@@ -31,10 +32,16 @@ export class UsersService {
     }));
     */
     if (user.password.length > 3) {
+      this.users.push({id: Math.floor(Math.random() * 987654321) + 123456789, login: user.login});
       return of(true);
     } else {
       return throwError('Longer');
     }
+  }
+
+  deleteUser(user: User) {
+    // TODO replace mock with real code
+    this.users.splice(this.users.indexOf(user), 1);
   }
 
   handleError(error) {

@@ -14,19 +14,19 @@ export class UserListComponent implements OnInit {
   private sorted = false;
 
   _listFilter: string;
-  get listFilter(): string{
-      return this._listFilter;
+  get listFilter(): string {
+    return this._listFilter;
   }
   set listFilter(value: string) {
-      this._listFilter = value;
-      this.filteredUsers = this.listFilter ? this.performFilter(this.listFilter) : this.users;
+    this._listFilter = value;
+    this.filteredUsers = this.listFilter ? this.performFilter(this.listFilter) : this.users;
   }
 
-  constructor(private _userService: UsersService) { 
+  constructor(private _userService: UsersService) {
   }
 
   ngOnInit() {
-    this._userService.getUsers().subscribe(users =>{
+    this._userService.getUsers().subscribe(users => {
       this.users = users;
       this.filteredUsers = this.users;
     });
@@ -51,7 +51,11 @@ export class UserListComponent implements OnInit {
   performFilter(filterBy: string): User[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.users.filter((user: User) =>
-    user.login.toLocaleLowerCase().indexOf(filterBy) !== -1);
-}
+      user.login.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  deleteUser(user: User) {
+    this._userService.deleteUser(user);
+  }
 
 }
