@@ -1,3 +1,4 @@
+import { SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
@@ -20,27 +21,32 @@ export class SongsService {
       {
         title: 'Behind Enemy Lines',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Big Eyes',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3'
+        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Epic Boss Battle',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Behind Enemy Lines',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Epic Boss Battle',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
       }
     ];
 
@@ -55,43 +61,50 @@ export class SongsService {
       {
         title: 'Behind Enemy Lines',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Big Eyes',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3'
+        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Epic Boss Battle',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Behind Enemy Lines',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3'
+        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Big Eyes',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3'
+        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
+        genre: 'Epic'
       },
       {
         title: 'Epic Boss Battle',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
       },
       {
         title: 'test',
         artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: 'Epic'
       }
     ];
 
     return of(songs);
   }
- 
+
   public getHistory(): Observable<Song[]> {
     return this._http.get<Song[]>(environment.baseUrl + environment.historyUrl);
   }
@@ -108,5 +121,20 @@ export class SongsService {
     } else {
       return throwError('Bad Request');
     }
+  }
+
+  public recognize(song): Observable<Song> {
+    // TODO replace mock with real code like the one below
+    // return this._http.post<Song>(environment.baseUrl + environment.recognizeUrl, song);
+
+    // MOCK
+    const match: Song = {
+      title: 'Behind Enemy Lines',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+      genre: 'Epic'
+    }
+
+    return of(match);
   }
 }

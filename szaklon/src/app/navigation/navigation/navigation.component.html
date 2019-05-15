@@ -20,7 +20,7 @@
         <!-- with ngIf
         <li class="nav-item dropdown" dropdown *ngIf="loggedIn && admin">
         -->
-        <li class="nav-item dropdown" dropdown>
+        <li class="nav-item dropdown" dropdown *ngIf="loggedIn && admin">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>Admin panel<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/admin/users">Users</a>

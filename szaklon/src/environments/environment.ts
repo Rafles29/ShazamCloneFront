@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: 'http://localhost:8080/',
   loginUrl: 'login',
   logoutUrl: 'logout',
-  historyUrl: 'history'
+  historyUrl: 'history',
+  recognizeUrl: 'recognize'
 };
 
 /*

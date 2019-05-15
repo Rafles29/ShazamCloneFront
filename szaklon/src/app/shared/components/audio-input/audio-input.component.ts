@@ -1,7 +1,9 @@
-import { Component, OnInit,  ViewChild, ElementRef } from '@angular/core';
+import { SongsService } from './../../services/songs.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IfStmt } from '@angular/compiler';
 import { AudioRecorderService } from '../../services/audio-recorder.service';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 
 @Component({
@@ -16,16 +18,29 @@ export class AudioInputComponent implements OnInit {
   public source: SafeUrl = '';
   private recording = false;
   file: File;
+  private blob: Blob;
   isRecording = false;
+  fileValid: boolean;
 
-  constructor(private _sanitizer: DomSanitizer, private _audioRecorder: AudioRecorderService) { }
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private _audioRecorder: AudioRecorderService,
+    private _songs: SongsService,
+    private _toast: ToastService
+    ) { }
 
   ngOnInit() {
     this._audioRecorder.init();
     this._audioRecorder.UrlReady.subscribe(url => {
       this.source = url;
       this.file = this._audioRecorder.getFile();
+      this.blob = this._audioRecorder.getBlob();
       console.log(this.file);
+      this.fileValid = true;
+    });
+
+    this._audioRecorder.wrongType.subscribe(message => {
+      this._toast.error(message);
     });
   }
 
@@ -48,10 +63,15 @@ export class AudioInputComponent implements OnInit {
     }
   }
 
-  recognize(event: Event) {
-    event.preventDefault();
+  recognize() {
     console.log(this.file);
     console.log(this.source);
+    this._songs.recognize(this.blob).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+
+    })
   }
 
 }

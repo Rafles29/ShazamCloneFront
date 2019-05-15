@@ -21,6 +21,6 @@
     </div>
     <audio #audio class="w-100" [src]="source" controls>
     </audio>
-    <button type="button" (click)="recognize($event)">Recognize</button>
+    <button mdbBtn type="button" gradient="blue" size="lg" rounded="true" mdbWavesEffect (click)="recognize()" [disabled]="!fileValid">Recognize</button>
   </form>
 </div>
