@@ -40,8 +40,7 @@
               <small class="text-muted">Genre: {{ topMatchedSong?.genre }}</small>
             </mdb-card-text>
           </div>
-          <audio class="w-100" controls>
-            <source [src]="topMatchedSong?.audioUrl">
+          <audio class="w-100" [src]="topMatchedSong?.audioUrl" controls>
             Your browser does not support audio element.
           </audio>
         </mdb-card-body>
