@@ -9,7 +9,7 @@
 
   <div class="switch square blue-white-switch" *ngIf="loggedIn">
     <label>
-      Popular
+      Featured
       <input type="checkbox" (change)="toggleHistory($event)">
       <span class="lever"></span>
       History
@@ -17,7 +17,7 @@
   </div>
 
   <div *ngIf="!showHistory">
-    <h1>Most popular searches</h1>
+    <h1>Featured and most popular songs</h1>
     <app-song-list [songs]="mostPopularSongs"></app-song-list>
   </div>
 
