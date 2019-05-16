@@ -3,4 +3,5 @@ export interface Song {
   artist: string;
   audioUrl: string;
   genre: string;
+  featured: boolean;
 }

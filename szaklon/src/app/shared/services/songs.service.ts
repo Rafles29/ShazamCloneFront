@@ -14,96 +14,56 @@ export class SongsService {
 
   constructor(private _http: HttpClient) { }
 
+  private songs: Song[] = [
+    {
+      title: 'Behind Enemy Lines',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+      genre: 'Epic',
+      featured: true
+    },
+    {
+      title: 'Big Eyes',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
+      genre: 'Epic',
+      featured: false
+    },
+    {
+      title: 'Epic Boss Battle',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+      genre: 'Epic',
+      featured: false
+    },
+    {
+      title: 'Behind Enemy Lines',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
+      genre: 'Epic',
+      featured: false
+    },
+    {
+      title: 'Epic Boss Battle',
+      artist: 'Rafael Krux',
+      audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+      genre: 'Epic',
+      featured: false
+    }
+  ];
+
+
   public getMostPopularSongs(): Observable<Song[]> {
     // TODO replace mock with real code
 
-    // MOCK
-    const songs: Song[] = [
-      {
-        title: 'Behind Enemy Lines',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Big Eyes',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Epic Boss Battle',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Behind Enemy Lines',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Epic Boss Battle',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
-      }
-    ];
 
-    return of(songs);
+    return of(this.songs);
   }
 
   public getSongs(): Observable<Song[]> {
         // TODO replace mock with real code
 
-    // MOCK
-    const songs: Song[] = [
-      {
-        title: 'Behind Enemy Lines',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Big Eyes',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Epic Boss Battle',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Behind Enemy Lines',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Big Eyes',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Epic Boss Battle',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'test',
-        artist: 'Andrzej',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Garage'
-      }
-    ];
-
-    return of(songs);
+    return of(this.songs);
   }
 
   public getHistory(): Observable<Song[]> {
@@ -130,26 +90,7 @@ export class SongsService {
     // return this._http.post<Song[]>(environment.baseUrl + environment.recognizeUrl, song);
 
     // MOCK
-    const matches: Song[] = [
-      {
-        title: 'Behind Enemy Lines',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Big Eyes',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Big%20Eyes.mp3',
-        genre: 'Epic'
-      },
-      {
-        title: 'Epic Boss Battle',
-        artist: 'Rafael Krux',
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: 'Epic'
-      }
-    ];
+    const matches: Song[] = this.songs.slice(0, 4);
 
     return of(matches);
   }

@@ -13,7 +13,7 @@ export class AdminSongListComponent implements OnInit {
   filteredSong: Song[];
 
   _listFilter: string;
-  get listFilter(): string{
+  get listFilter(): string {
       return this._listFilter;
   }
   set listFilter(value: string) {
@@ -29,7 +29,7 @@ export class AdminSongListComponent implements OnInit {
         this.songList = songList;
         this.filteredSong = this.songList;
       }
-    )
+    );
   }
 
   performFilter(filterBy: string): Song[] {

@@ -22,3 +22,11 @@ mdb-toast-component{
 h1, h2, h3 {
   text-align: center;
 }
+
+mdb-flipping-card div.flip-container.card-wrapper {
+    height: 275px !important;
+  }
+
+  .card-wrapper .face h5 {
+      margin-top: 0;
+  }

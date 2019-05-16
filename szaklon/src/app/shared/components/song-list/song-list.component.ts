@@ -11,6 +11,7 @@ const SONGS_PER_ROW = 3;
 export class SongListComponent implements OnInit {
 
   @Input() songs: Song[];
+  @Input() admin = false;
 
   constructor() { }
 

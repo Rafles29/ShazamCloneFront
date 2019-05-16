@@ -6,10 +6,6 @@
 
 .card-container {
   margin-bottom: 15px;
-
-  .card {
-    height: 100%;
-  }
 }
 
 .row {
@@ -20,4 +16,7 @@
 .text-muted {
   display: block;
 }
-
+audio {
+  position: absolute;
+  bottom: 20px;
+}
