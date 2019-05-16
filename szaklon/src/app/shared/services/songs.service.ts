@@ -78,7 +78,9 @@ export class SongsService {
       return of({
         title: song.title,
         artist: song.artist,
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3'
+        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
+        genre: song.genre,
+        featured: false
       });
     } else {
       return throwError('Bad Request');

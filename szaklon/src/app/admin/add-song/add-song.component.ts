@@ -19,6 +19,7 @@ export class AddSongComponent implements OnInit {
     title: ['', Validators.required],
     artist : ['', Validators.required],
     file: [null, Validators.required],
+    genre: ['', Validators.required]
   });
 
   constructor(
@@ -43,6 +44,7 @@ export class AddSongComponent implements OnInit {
       this._songsService.addSong({
         title: this.addSongForm.get('title').value,
         artist: this.addSongForm.get('artist').value,
+        genre: this.addSongForm.get('genre').value,
         file: this.file
       }).subscribe(token => {
           this._toast.success('Song added successfully');
