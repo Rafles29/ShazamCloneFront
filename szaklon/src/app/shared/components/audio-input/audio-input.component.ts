@@ -68,11 +68,19 @@ export class AudioInputComponent implements OnInit {
 
   recognize() {
     this.matchedSongContainer.hide();
+    // TODO add loader
+    // this.loading = true;
 
     this._songs.recognize(this.blob).subscribe(matchedSongs => {
       this.topMatchedSong = matchedSongs[0];
       this.otherMatchedSongs = matchedSongs.slice(1);
-      this.matchedSongContainer.show();
+      // TODO hide loader
+      // this.loading = false;
+      
+      // TODO delete waiting 
+      setTimeout(() => {
+        this.matchedSongContainer.show();
+      }, 700)
     }, error => {
       this._toast.error('No song could be matched');
 

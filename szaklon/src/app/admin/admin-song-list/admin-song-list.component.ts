@@ -37,7 +37,8 @@ export class AdminSongListComponent implements OnInit {
     return this.songList.filter((songs: Song) =>
       songs.title.toLocaleLowerCase().indexOf(filterBy) !== -1  ||
       songs.artist.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      songs.genre.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      songs.genre.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      ('featured'.startsWith(filterBy) ? songs.featured : false));
   }
 
 }

@@ -45,9 +45,9 @@ export class SongsService {
     },
     {
       title: 'Epic Boss Battle',
-      artist: 'Rafael Krux',
+      artist: 'Zenek Martyniuk',
       audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-      genre: 'Epic',
+      genre: 'Disco',
       featured: false
     }
   ];
