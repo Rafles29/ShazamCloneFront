@@ -70,18 +70,23 @@ export class SongsService {
     return this._http.get<Song[]>(environment.baseUrl + environment.historyUrl);
   }
 
-  addSong(song: SongForm): Observable<Song | {}> {
+  addSong(songs: SongForm[]): Observable<Song[] | {}> {
     // TODO replace mock with real code
 
     // MOCK
-    if (song.file.name.length > 0 && song.artist.length > 3) {
-      return of({
-        title: song.title,
-        artist: song.artist,
-        audioUrl: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-        genre: song.genre,
-        featured: false
-      });
+    if (songs.length > 0) {
+      return of(songs);
+    } else {
+      return throwError('Bad Request');
+    }
+  }
+
+  addSongs(songs: Song[]): Observable<Song[] | {}> {
+    // TODO replace mock with real code
+
+    // MOCK
+    if (songs.length > 0) {
+      return of(songs);
     } else {
       return throwError('Bad Request');
     }

@@ -19,6 +19,9 @@ export class AudioRecorderService {
 
 
   constructor(private _sanitizer: DomSanitizer) {
+  }
+
+  init() {
     this.reader = new FileReader();
     this.reader.onload = (_event) => {
       const result = this.reader.result.toString();
@@ -37,9 +40,7 @@ export class AudioRecorderService {
       }
 
     };
-  }
 
-  init() {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
         this.stream = stream;
@@ -82,15 +83,11 @@ export class AudioRecorderService {
     }
     this.file = files[0];
 
-
     const chunk: Blob = this.file.slice(0, fileType.minimumBytes);
-    this.reader.readAsArrayBuffer(chunk)
-
-
-
+    this.reader.readAsArrayBuffer(chunk);
   }
 
-  private blobToFile = (theBlob: Blob, fileName: string): File => {
+  private blobToFile (theBlob: Blob, fileName: string): File {
     const b: any = theBlob;
 
     b.lastModifiedDate = new Date();

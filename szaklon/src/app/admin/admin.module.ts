@@ -8,7 +8,6 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AdminSongListComponent } from './admin-song-list/admin-song-list.component';
-import { SongListComponent } from '../shared/components/song-list/song-list.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
