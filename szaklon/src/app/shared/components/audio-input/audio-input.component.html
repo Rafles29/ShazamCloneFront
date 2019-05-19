@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class='file-field big'>
-      <a floating="true" mdbBtn size="lg" gradient="blue" mdbWavesEffect class="mt-0" (click)="recordAudio()">
+      <a floating="true" mdbBtn size="lg" mdbWavesEffect class="mt-0" (click)="recordAudio()" [ngClass]="(isRecording)?'ripe-malinka-gradient': 'blue-gradient'">
         <i class="fas fa-microphone" [hidden]="isRecording"></i>
         <mdb-icon fas icon="pause" class="animated pulse infinite" [hidden]="!isRecording"></mdb-icon>
       </a>
