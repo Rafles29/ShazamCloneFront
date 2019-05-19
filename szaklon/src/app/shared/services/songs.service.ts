@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Song } from '../models/song.model';
 import { SongForm } from '../models/song-form.model';
 import { SELECT_PANEL_INDENT_PADDING_X, SELECT_PANEL_PADDING_X } from '@angular/material';
+import { SearchOptions } from '../models/search-options';
 
 @Injectable({
   providedIn: 'root'
@@ -66,11 +67,15 @@ export class SongsService {
     return of(this.songs);
   }
 
+  public searcheSongs(options: SearchOptions): Observable<Song[]> {
+    return of(this.performFilter(options));
+  }
+
   public getHistory(): Observable<Song[]> {
     return this._http.get<Song[]>(environment.baseUrl + environment.historyUrl);
   }
 
-  addSong(songs: SongForm[]): Observable<Song[] | {}> {
+  public addSong(songs: SongForm[]): Observable<Song[] | {}> {
     // TODO replace mock with real code
 
     // MOCK
@@ -81,7 +86,7 @@ export class SongsService {
     }
   }
 
-  addSongs(songs: Song[]): Observable<Song[] | {}> {
+  public addSongs(songs: Song[]): Observable<Song[] | {}> {
     // TODO replace mock with real code
 
     // MOCK
@@ -101,4 +106,12 @@ export class SongsService {
 
     return of(matches);
   }
+
+  private performFilter(options: SearchOptions): Song[] {
+    return this.songs.filter((songs: Song) =>
+      songs.artist.toLocaleLowerCase().indexOf(options.artist) !== -1 &&
+      songs.genre.toLocaleLowerCase().indexOf(options.genre) !== -1 &&
+      songs.featured !== true);
+  }
+
 }

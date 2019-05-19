@@ -4,10 +4,6 @@
   justify-content: space-between;
 }
 
-.card-container {
-  margin-bottom: 15px;
-}
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +12,8 @@
 .text-muted {
   display: block;
 }
-audio {
+a.rotate-btn {
   position: absolute;
-  bottom: 20px;
+  left: 90%;
+  top: 10%;
 }

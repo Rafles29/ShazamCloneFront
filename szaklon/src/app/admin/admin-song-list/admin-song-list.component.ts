@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from 'src/app/shared/models/song.model';
 import { SongsService } from 'src/app/shared/services/songs.service';
+import { SearchOptions } from 'src/app/shared/models/search-options';
 
 @Component({
   selector: 'app-admin-song-list',
@@ -21,24 +22,39 @@ export class AdminSongListComponent implements OnInit {
       this.filteredSong = this.listFilter ? this.performFilter(this.listFilter) : this.songList;
   }
 
+  genreOptionsSelect = [
+    { value: 'epic', label: 'Epic'},
+    { value: 'disco', label: 'Disco' }
+  ];
+
+  artistOptionsSelect = [
+    { value: 'rafael krux', label: 'Rafael Krux' },
+    { value: 'zenek martyniuk', label: 'Zenek Martyniuk' }
+  ];
+
+  options: SearchOptions = {
+    genre: '',
+    artist: '',
+    featured: false
+  };
+
   constructor(private _songs: SongsService) { }
 
   ngOnInit() {
-    this._songs.getSongs().subscribe(
+  }
+
+  performFilter(filterBy: string): Song[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.songList.filter((songs: Song) =>
+      songs.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  search() {
+    this._songs.searcheSongs(this.options).subscribe(
       songList => {
         this.songList = songList;
         this.filteredSong = this.songList;
       }
     );
   }
-
-  performFilter(filterBy: string): Song[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.songList.filter((songs: Song) =>
-      songs.title.toLocaleLowerCase().indexOf(filterBy) !== -1  ||
-      songs.artist.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      songs.genre.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      ('featured'.startsWith(filterBy) ? songs.featured : false));
-  }
-
 }

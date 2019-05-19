@@ -6,7 +6,7 @@
 
   <hr class="my-5">
 
-  <div class="switch square blue-white-switch" *ngIf="loggedIn">
+  <div class="switch blue-white-switch" *ngIf="loggedIn">
     <label>
       Featured
       <input type="checkbox" (change)="toggleHistory($event)">
@@ -16,12 +16,12 @@
   </div>
 
   <div *ngIf="!showHistory">
-    <h1>Featured and most popular songs</h1>
+    <h1 class="mb-5">Featured and most popular songs</h1>
     <app-song-list [songs]="mostPopularSongs"></app-song-list>
   </div>
 
   <div *ngIf="showHistory && loggedIn">
-    <h1>Your top match history</h1>
+    <h1 class="mb-5">Your top match history</h1>
     <app-song-list [songs]="history"></app-song-list>
   </div>
 

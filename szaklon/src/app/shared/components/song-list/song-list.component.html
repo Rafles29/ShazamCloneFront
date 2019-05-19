@@ -1,60 +1,39 @@
 <!-- <div class="row" *ngFor="let batch of songBatches"> -->
 <div class="row">
-  <div class="card-container col-12 col-md-6 col-lg-4" *ngFor="let song of songs; let i = index">
-    <!--
-    <mdb-card *ngIf="admin">
-      <mdb-card-body>
-        <div>
-          <mdb-card-title>
-            <h5>{{ song?.title }}</h5>
-          </mdb-card-title>
-          <mdb-card-text>
-            <small class="text-muted">by {{ song?.artist }}</small>
-            <small class="text-muted">Genre: {{ song?.genre }}</small>
-          </mdb-card-text>
-        </div>
-        <audio class="w-100" controls>
-          <source [src]="song?.audioUrl">
-          Your browser does not support audio element.
-        </audio>
-      </mdb-card-body>
-    </mdb-card>
-    -->
+  <div class="card-container col-12 col-md-6 col-lg-4 mb-2" *ngFor="let song of songs; let i = index">
+    <!--Front Side-->
     <mdb-flipping-card #card>
-      <!--Front Side-->
-      <div class="face front card tp-box_side tp-box_front">
-  
-        <!--Content-->
-        <div class="content">
+      <mdb-card class="front w-100" cascade="true" >
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header blue-gradient">
           <a class="rotate-btn" data-card="card-2" (click)="card.toggle()" *ngIf="admin">
             <mdb-icon fas icon="edit"></mdb-icon>
           </a>
-          <mdb-card-title>
-            <h4 class="mt-5 text-center">{{ song?.title }}</h4>
-          </mdb-card-title>
-          <mdb-card-text class="text-center">
+          <h4 class="card-header-title">{{ song?.title }}</h4>
+        </div>
+        <!--/Card image-->      
+        <mdb-card-body cascade="true" class="text-center">
+          <!--Card content-->      
+          <mdb-card-text>
             <small class="text-muted">by {{ song?.artist }}</small>
             <small class="text-muted">Genre: {{ song?.genre }}</small>
             <small class="text-muted" *ngIf="admin">Featured: {{ song?.featured }}</small>
-          </mdb-card-text>
-        </div>
-
-        <audio class="w-100" controls>
+          </mdb-card-text>      
+        </mdb-card-body>          
+        <audio class="w-100 px-3 mb-4" controls>
           <source [src]="song?.audioUrl">
           Your browser does not support audio element.
         </audio>
-        <!--/.Content-->
-  
-      </div>
+        <!--/.Card content-->      
+      </mdb-card>
       <!--/.Front Side-->
-  
+
       <!--Back Side-->
       <div class="face back tp-box_side tp-box_back" *ngIf="admin">
         <!--Title-->
         <h5 class="card-title">Options
           <i class="fas fa-times rotate-btn" (click)="card.toggle()"></i>
         </h5>
-
         <form (submit)="OnChangeEmit(songs[i])">
             <div class="form-row">
                 <div class="col-6">
@@ -85,11 +64,10 @@
             </div>
             <button mdbBtn color="info" size="sm" outline="true" rounded="true" block="true" class="my- 0 waves-effect z-depth-0" mdbWavesEffect
             type="submit">Update</button>
-
-        </form>
-
-      </div>
+          </form>
+        </div>
       <!--/.Back Side-->
     </mdb-flipping-card>
+
   </div>
 </div>
