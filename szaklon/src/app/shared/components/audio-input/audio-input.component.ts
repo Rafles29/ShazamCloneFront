@@ -76,15 +76,15 @@ export class AudioInputComponent implements OnInit {
       this.otherMatchedSongs = matchedSongs.slice(1);
       // TODO hide loader
       // this.loading = false;
-      
-      // TODO delete waiting 
+
+      // TODO delete waiting
       setTimeout(() => {
         this.matchedSongContainer.show();
-      }, 700)
+      }, 700);
     }, error => {
       this._toast.error('No song could be matched');
 
-    })
+    });
   }
 
 }
