@@ -34,7 +34,7 @@
             </div>
       
             <div class="file-field big">
-              <a class="btn-floating btn-lg amber darken-2 mt-0 float-left">
+              <a class="btn-floating btn-lg blue-gradient darken-2 mt-0 float-left">
                 <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
                 <input type="file" accept='audio/*' multiple #audioInput (change)="showPreview(audioInput.files)" formControlName="file">
               </a>
@@ -71,7 +71,7 @@
       <form class="text-center mt-4" style="color: #757575;" [formGroup]="addJsonForm" (ngSubmit)="addSongs()">
   
         <div class="file-field big">
-          <a class="btn-floating btn-lg amber darken-2 mt-0 float-left">
+          <a class="btn-floating btn-lg blue-gradient darken-2 mt-0 float-left">
             <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
             <input type="file" accept='application/json' multiple #jsonInput (change)="showJson(jsonInput.files)" formControlName="json">
           </a>
