@@ -1,6 +1,6 @@
 <!-- <div class="row" *ngFor="let batch of songBatches"> -->
 <div class="row">
-  <div class="card-container col-12 col-md-6 col-lg-4" *ngFor="let song of songs">
+  <div class="card-container col-12 col-md-6 col-lg-4" *ngFor="let song of songs; let i = index">
     <!--
     <mdb-card *ngIf="admin">
       <mdb-card-body>
@@ -55,31 +55,31 @@
           <i class="fas fa-times rotate-btn" (click)="card.toggle()"></i>
         </h5>
 
-        <form>
+        <form (submit)="OnChangeEmit(songs[i])">
             <div class="form-row">
                 <div class="col-6">
                     <div class="md-form form-sm">
-                      <input mdbInput type="text" id="form2" class="form-control form-control-sm" [value]="song.title">
-                      <label for="form2" class="">Title</label>
+                      <input mdbInput type="text" id="title" class="form-control form-control-sm" [(ngModel)]="songs[i].title" name="title">
+                      <label for="title" class="">Title</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="md-form form-sm">
-                      <input mdbInput type="text" id="form2" class="form-control form-control-sm" [value]="song.artist">
-                      <label for="form2" class="">Artist</label>
+                      <input mdbInput type="text" id="artist" class="form-control form-control-sm" [(ngModel)]="songs[i].artist" name="artist">
+                      <label for="artist" class="">Artist</label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="md-form form-sm">
-                      <input mdbInput type="text" id="form2" class="form-control form-control-sm" [value]="song.genre">
-                      <label for="form2" class="">Genre</label>
+                      <input mdbInput type="text" id="genre" class="form-control form-control-sm"  [(ngModel)]="songs[i].genre" name="genre">
+                      <label for="genre" class="">Genre</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="md-form form-sm">
-                      <mdb-checkbox [checked]="song.featured">Featured</mdb-checkbox>
+                      <mdb-checkbox [(ngModel)]="songs[i].featured" name="featured">Featured</mdb-checkbox>
                     </div>
                 </div>
             </div>

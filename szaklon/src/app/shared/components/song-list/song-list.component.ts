@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Song } from '../../models/song.model';
 
 const SONGS_PER_ROW = 3;
@@ -12,11 +12,17 @@ export class SongListComponent implements OnInit {
 
   @Input() songs: Song[];
   @Input() admin = false;
+  @Output() changedValue = new EventEmitter<Song>();
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  OnChangeEmit(song: Song) {
+    this.changedValue.emit(song);
+    console.log(song);
   }
 
 }
