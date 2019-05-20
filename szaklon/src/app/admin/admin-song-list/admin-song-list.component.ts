@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Song } from 'src/app/shared/models/song.model';
 import { SongsService } from 'src/app/shared/services/songs.service';
 import { SearchOptions } from 'src/app/shared/models/search-options';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-admin-song-list',
@@ -10,8 +11,13 @@ import { SearchOptions } from 'src/app/shared/models/search-options';
 })
 export class AdminSongListComponent implements OnInit {
 
+
+
+  @ViewChild('pagination') paginator: PaginationComponent;
+
   songList: Song[];
   filteredSong: Song[];
+  viewSongList: Song[];
 
   _listFilter: string;
   get listFilter(): string {
@@ -41,6 +47,9 @@ export class AdminSongListComponent implements OnInit {
   constructor(private _songs: SongsService) { }
 
   ngOnInit() {
+    this.paginator.pagedList.subscribe(songs => {
+      this.viewSongList = songs;
+    });
   }
 
   performFilter(filterBy: string): Song[] {

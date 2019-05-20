@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation example" *ngIf="elements">
+  <ul class="pagination justify-content-center pg-blue">
+    <li class="page-item">
+      <a class="page-link" aria-label="Previous" (click)="previous()">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <p class="my-auto">{{begin}}-{{end}} of {{elements.length}}</p>
+    <li class="page-item">
+      <a class="page-link" aria-label="Next" (click)="next()">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>

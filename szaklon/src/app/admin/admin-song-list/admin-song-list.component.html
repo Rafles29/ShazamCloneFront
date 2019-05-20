@@ -22,5 +22,6 @@
   type="submit" (click)="search()">Find</button>
   <h1>Songs</h1>
   <br>
-  <app-song-list [songs]="filteredSong" [admin]="true"></app-song-list>
+  <app-song-list [songs]="viewSongList" [admin]="true"></app-song-list>
+  <app-pagination [elements]="filteredSong" [pageSize]="3" #pagination></app-pagination>
 </div>
