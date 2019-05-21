@@ -53,6 +53,9 @@ export class AdminSongListComponent implements OnInit {
   }
 
   performFilter(filterBy: string): Song[] {
+    if(filterBy.length < 3) {
+      return this.songList;
+    }
     filterBy = filterBy.toLocaleLowerCase();
     return this.songList.filter((songs: Song) =>
       songs.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
