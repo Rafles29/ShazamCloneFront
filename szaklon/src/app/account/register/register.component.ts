@@ -42,8 +42,18 @@ export class RegisterComponent implements OnInit {
           this.toast.success('Registered successfully');
           this._router.navigateByUrl('/login');
       }, err => {
-        this.toast.error('Something went wrong, please try again later');
+        this.toast.error(err.error);
       });
+    } else {
+      if(this.registerForm.get('username').hasError('required')) {
+        this.toast.error('Username is required');
+      } else if(this.registerForm.get('password').hasError('required')) {
+        this.toast.error('Password is required');
+      } else if(this.registerForm.get('passwordRepeat').hasError('required')) {
+        this.toast.error('Please repeat the password');
+      } else {
+        this.toast.error('Passwords must match');
+      }
     }
   }
 

@@ -14,14 +14,12 @@ import { JsonInputReaderService } from 'src/app/shared/services/json-input-reade
 })
 export class AddSongComponent implements OnInit {
 
-  public source: SafeUrl = '';
-  file: File;
   songs: Song[];
 
   addSongForm = this._formBuilder.group({
     title: ['', Validators.required],
     artist : ['', Validators.required],
-    file: [null, Validators.required],
+    url: ['', Validators.required],
     genre: ['', Validators.required]
   });
 
@@ -37,10 +35,6 @@ export class AddSongComponent implements OnInit {
     private _jsonInputReader: JsonInputReaderService) { }
 
   ngOnInit() {
-    this._audioRecorder.UrlReady.subscribe(url => {
-      this.source = url;
-      this.file = this._audioRecorder.getFile();
-    });
     this._jsonInputReader.init();
     this._jsonInputReader.jsonReady.subscribe(json => {
       this.songs = json;
@@ -64,11 +58,11 @@ export class AddSongComponent implements OnInit {
 
   addSong() {
     if (this.addSongForm.valid) {
-      this._songsService.addSong([{
+      this._songsService.addSongs([{
         title: this.addSongForm.get('title').value,
         artist: this.addSongForm.get('artist').value,
         genre: this.addSongForm.get('genre').value,
-        file: this.file
+        url: this.addSongForm.get('url').value
       }]).subscribe(token => {
           this._toast.success('Song added successfully');
           this.addSongForm.reset();

@@ -1,8 +1,8 @@
-export interface Song {
+export interface TopSong {
   id: number;
   title: string;
   artist: string;
   url: string;
   genre: string;
-  featured: boolean;
+  cnt: number;
 }

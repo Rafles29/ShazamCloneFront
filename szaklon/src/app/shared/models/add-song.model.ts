@@ -1,8 +1,6 @@
-export interface Song {
-  id: number;
+export interface AddSong {
   title: string;
   artist: string;
   url: string;
   genre: string;
-  featured: boolean;
 }

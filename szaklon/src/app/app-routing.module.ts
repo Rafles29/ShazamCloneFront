@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: UserListComponent/*, canActivate: [AdminGuard] */},
   { path: 'admin/users/add', component: AddUserComponent/*, canActivate: [AdminGuard] */},
-  { path: 'admin/songs', component: AdminSongListComponent /*, canActivate: [AdminGuard] */},
+  { path: 'admin/songs', component: AdminSongListComponent, canActivate: [AdminGuard]},
   { path: 'admin/songs/add', component: AddSongComponent /*, canActivate: [AdminGuard] */},
   { path: 'admin/logs', component: LogsComponent /*, canActivate: [AdminGuard] */},
   { path: '', component: HomepageComponent },

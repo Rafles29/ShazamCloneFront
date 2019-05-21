@@ -41,14 +41,10 @@ export class AuthenticationService {
   }
 
   register(registerCredentials: UserRegister): Observable<boolean> {
-    // TODO replace mock with real code
-
-    // MOCK
-    if (registerCredentials.password.length > 3) {
-      return of(true);
-    } else {
-      return throwError('Longer');
-    }
+    return this._http.post<boolean>(environment.baseUrl + environment.registerUrl, {
+      login: registerCredentials.login,
+      password: registerCredentials.password
+    });
   }
 
   // true if account deleted

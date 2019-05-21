@@ -11,20 +11,20 @@
           </a>
           <h4 class="card-header-title">{{ song?.title }}</h4>
         </div>
-        <!--/Card image-->      
+        <!--/Card image-->
         <mdb-card-body cascade="true" class="text-center">
-          <!--Card content-->      
+          <!--Card content-->
           <mdb-card-text>
             <small class="text-muted">by {{ song?.artist }}</small>
             <small class="text-muted">Genre: {{ song?.genre }}</small>
             <small class="text-muted" *ngIf="admin">Featured: {{ song?.featured }}</small>
-          </mdb-card-text>      
-        </mdb-card-body>          
+          </mdb-card-text>
+        </mdb-card-body>
         <audio class="w-100 px-3 mb-4" controls>
-          <source [src]="song?.audioUrl">
+          <source [src]="song?.url">
           Your browser does not support audio element.
         </audio>
-        <!--/.Card content-->      
+        <!--/.Card content-->
       </mdb-card>
       <!--/.Front Side-->
 
@@ -34,7 +34,7 @@
         <h5 class="card-title">Options
           <i class="fas fa-times rotate-btn" (click)="card.toggle()"></i>
         </h5>
-        <form (submit)="OnChangeEmit(songs[i])">
+        <form (submit)="card.toggle(); OnChangeEmit(songs[i])">
             <div class="form-row">
                 <div class="col-6">
                     <div class="md-form form-sm">
