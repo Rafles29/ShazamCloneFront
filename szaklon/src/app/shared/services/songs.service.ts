@@ -101,13 +101,13 @@ export class SongsService {
   public recognize(song): Observable<Song[]> {
     // TODO replace mock with real code like the one below
     // TODO what should we be sending...
-    // const headers = new HttpHeaders({'Content-Type': 'application/octet-stream'});
-    // return this._http.post<Song[]>(environment.baseUrl + environment.recognizeUrl + '/' + this.recognizeLimit, song, {headers: headers});
+    const headers = new HttpHeaders({'Content-Type': 'application/octet-stream'});
+    return this._http.post<Song[]>(environment.baseUrl + environment.recognizeUrl + '/' + this.recognizeLimit, song, {headers: headers});
 
     // MOCK
-    const matches: Song[] = this.songs.slice(0, 4);
+    // const matches: Song[] = this.songs.slice(0, 4);
 
-    return of(matches);
+    // return of(matches);
   }
 
 }
