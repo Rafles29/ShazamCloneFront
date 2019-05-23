@@ -75,7 +75,10 @@ export class AudioInputComponent implements OnInit {
     // TODO add loader
     // this.loading = true;
 
-    this._songs.recognize(this.file);
+    console.log(this.file.slice(0));
+
+    // this._songs.recognize(this.file);
+    this._songs.recognize(this.file.slice(0));
     // .subscribe(matchedSongs => {
     //   console.log(matchedSongs);
     //   this.topMatchedSong = matchedSongs[0];
