@@ -117,7 +117,7 @@ export class SongsService {
       );
     }
 
-    reader.readAsBinaryString(song);
+    reader.readAsArrayBuffer(song);
   }
 
   handleError(error) {
