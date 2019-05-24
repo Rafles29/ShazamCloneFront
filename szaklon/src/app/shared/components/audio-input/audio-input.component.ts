@@ -47,6 +47,14 @@ export class AudioInputComponent implements OnInit {
     this._audioRecorder.wrongType.subscribe(message => {
       this._toast.error(message);
     });
+
+    this._songs.songsRecognized.subscribe(songs => {
+      this.showRecognized(songs);
+    });
+
+    this._songs.songRecognizeError.subscribe(message => {
+      this.recognizeError(message);
+    });
   }
 
 
@@ -67,23 +75,26 @@ export class AudioInputComponent implements OnInit {
     }
   }
 
+  recognizeError(message: string) {
+    this._toast.error(message);
+    this.loading = false;
+  }
+
   recognize() {
     this.loading = true;
     this.matchedSongContainer.hide();
-    this._songs.recognize(this.blob).subscribe(matchedSongs => {
-      console.log(matchedSongs);
-      this.topMatchedSong = matchedSongs[0];
-      this.otherMatchedSongs = matchedSongs.slice(1);
-      this.loading = false;
-      // TODO delete waiting
-      setTimeout(() => {
-        this.matchedSongContainer.show();
-      }, 700);
-    }, error => {
-      this.loading = false;
-      console.log(error);
-      this._toast.error('No song could be matched');
-    });
+    console.log(this.file.slice(0));
+    this._songs.recognize(this.file.slice(0));
+
+  }
+
+  showRecognized(matchedSongs: Song[]) {
+    console.log(matchedSongs);
+    this.topMatchedSong = matchedSongs[0];
+    this.otherMatchedSongs = matchedSongs.slice(1);
+    this.loading = false;
+
+    this.matchedSongContainer.show();
   }
 
 }
