@@ -26,6 +26,7 @@ export class AudioInputComponent implements OnInit {
   fileValid: boolean;
   topMatchedSong: Song;
   otherMatchedSongs: Song[];
+  loading: boolean;
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -67,22 +68,19 @@ export class AudioInputComponent implements OnInit {
   }
 
   recognize() {
+    this.loading = true;
     this.matchedSongContainer.hide();
-    // TODO add loader
-    // this.loading = true;
-
     this._songs.recognize(this.blob).subscribe(matchedSongs => {
       console.log(matchedSongs);
       this.topMatchedSong = matchedSongs[0];
       this.otherMatchedSongs = matchedSongs.slice(1);
-      // TODO hide loader
-      // this.loading = false;
-
+      this.loading = false;
       // TODO delete waiting
       setTimeout(() => {
         this.matchedSongContainer.show();
       }, 700);
     }, error => {
+      this.loading = false;
       console.log(error);
       this._toast.error('No song could be matched');
     });

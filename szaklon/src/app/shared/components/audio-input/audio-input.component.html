@@ -24,6 +24,9 @@
     <button mdbBtn class="centered" type="button" gradient="blue" size="lg" rounded="true" mdbWavesEffect (click)="recognize()" [disabled]="!fileValid">Recognize</button>
   </form>
 
+  <div class="d-flex justify-content-center" *ngIf="loading" >
+      <mdb-spinner spinnerColor="blue"></mdb-spinner>
+    </div>
 
   <div class="" mdbCollapse #matchedSongContainer="bs-collapse">
     <h2>
