@@ -12,10 +12,14 @@ export class NavigationComponent implements OnInit {
   username: string;
   loggedIn: boolean;
   admin: boolean;
+  isMobile: boolean;
 
-  constructor(private toast: ToastService, private _auth: AuthenticationService) { }
+  constructor(private toast: ToastService, private _auth: AuthenticationService) { 
+    
+  }
 
   ngOnInit() {
+    this.detectMobile();
     this._auth.isLoggedIn().subscribe(newValue => {
       this.loggedIn = newValue;
       this.username = this._auth.getUsername();
@@ -23,11 +27,21 @@ export class NavigationComponent implements OnInit {
     this._auth.isAdmin().subscribe(newValue => {
       this.admin = newValue;
     });
+    
   }
 
   logout() {
     this._auth.logout();
     this.toast.success('Logged out successfully');
+  }
+
+  detectMobile() {
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+       this.isMobile = true;
+    } else {
+     this.isMobile = false;
+    }
   }
 
 }

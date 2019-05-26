@@ -1,5 +1,5 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" [ngClass]="(isMobile)?'navbar-expand-lg': 'navbar-expand'" [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" routerLink="/">Szaklon</a></mdb-navbar-brand>
