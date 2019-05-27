@@ -26,3 +26,8 @@ mdb-flipping-card div.flip-container.card-wrapper {
   .card-wrapper .face h5 {
       margin-top: 0;
   }
+
+  .card-wrapper .card-rotating .face {
+    z-index: unset;
+  }
+

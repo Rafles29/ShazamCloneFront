@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { SongListComponent } from './../../shared/components/song-list/song-list.component';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
@@ -30,11 +31,21 @@ export class AdminSongListComponent implements OnInit {
 
   genreOptionsSelect: {value: string, label: string}[];
   artistOptionsSelect: {value: string, label: string}[];
+  featuredOptionsSelect: {value: boolean, label: string}[] = [
+    {
+      value: true,
+      label: 'Featured'
+    },
+    {
+      value: false,
+      label: 'Not featured'
+    }
+  ];
 
   options: SearchOptions = {
-    genre: [],
-    artist: [],
-    featured: false
+    genres: [],
+    artists: [],
+    featured: undefined
   };
 
   constructor(private _songs: SongsService, private _toast: ToastService) { }
@@ -58,7 +69,7 @@ export class AdminSongListComponent implements OnInit {
       }, err => {
         this._toast.error('Song could not be updated');
       });
-    })
+    });
   }
 
   performFilter(filterBy: string): Song[] {
@@ -68,6 +79,22 @@ export class AdminSongListComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.songList.filter((songs: Song) =>
       songs.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  selectFeatured(event: {value: boolean, label: string}) {
+    if (this.options.featured !== undefined && this.options.featured !== null && event.value !== this.options.featured) {
+      this.options.featured = null;
+    } else {
+      this.options.featured = event.value;
+    }
+  }
+
+  deselectFeatured(event: {value: boolean, label: string}) {
+    if (this.options.featured !== undefined && this.options.featured !== null && event.value === this.options.featured) {
+      this.options.featured = null;
+    } else {
+      this.options.featured = !event.value;
+    }
   }
 
   search() {

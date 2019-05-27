@@ -1,5 +1,5 @@
 export interface SearchOptions {
-    artist: string[];
+    artists: string[];
     featured: boolean;
-    genre: string[];
+    genres: string[];
 }

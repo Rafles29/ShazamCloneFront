@@ -21,7 +21,7 @@ export class PaginationComponent implements OnChanges {
   ngOnChanges() {
     if (this.elements) {
       this.nmbOfPages = Math.ceil(this.elements.length / this.pageSize);
-      this.begin = 1 + (this.currentPage - 1) * this.pageSize;
+      this.begin = this.elements.length > 0 ? 1 + (this.currentPage - 1) * this.pageSize : 0;
       const possibleEnd = this.pageSize + (this.currentPage - 1) * this.pageSize;
       this.end = possibleEnd > this.elements.length ? this.elements.length : possibleEnd;
       const pagedList = this.elements.slice(this.begin - 1, this.end);

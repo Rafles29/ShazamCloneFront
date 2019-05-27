@@ -86,7 +86,7 @@ export class SongsService {
 
   public searchSongs(options: SearchOptions): Observable<Song[]> {
     // TODO add backend filtering
-    return this._http.get<Song[]>(environment.baseUrl + environment.songsUrl);
+    return this._http.post<Song[]>(environment.baseUrl + environment.songsUrl, options);
   }
 
   public getHistory(): Observable<Song[]> {
@@ -98,7 +98,6 @@ export class SongsService {
   }
 
   public addSongs(songs: AddSong[]): Observable<void> {
-    // TODO check if backend is working
     return this._http.post<void>(environment.baseUrl + environment.addSongUrl, songs);
   }
 
