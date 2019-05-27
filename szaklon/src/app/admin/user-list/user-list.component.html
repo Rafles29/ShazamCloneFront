@@ -34,6 +34,11 @@
                   <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                 </a>
               </th>
+              <th>
+                <a (click)="sortBy('role')">Role
+                  <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+                </a>
+              </th>
               <!-- <th>
                   Edit
                 </th> -->
@@ -49,7 +54,8 @@
             <tr *ngFor="let user of filteredUsers;let i = index">
               <td>{{user.id}}</td>
               <td>{{user.login}}</td>
-              <td>
+              <td>{{user.role}}</td>
+              <td class="delete-btn-cell">
                 <button type="button" mdbBtn color="danger" outline="true" rounded="true" size="sm"
                   class="px-2 delete-btn" mdbWavesEffect (click)="deleteUser(user)">
                   <mdb-icon fas icon="times" class="mt-0"></mdb-icon>

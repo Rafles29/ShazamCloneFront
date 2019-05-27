@@ -11,5 +11,6 @@ export const environment = {
   genresUrl: 'genres',
   artistsUrl: 'artists',
   addSongUrl: 'add_song',
-  editSongUrl: 'edit_song'
+  editSongUrl: 'edit_song',
+  usersUrl: 'users',
 };

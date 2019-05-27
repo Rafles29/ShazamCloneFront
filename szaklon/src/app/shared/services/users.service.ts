@@ -12,15 +12,18 @@ import { HttpClient } from '@angular/common/http';
 export class UsersService {
 
   private users: User[] = [
-    {id: 1, login: 'Rafał'},
-    {id: 2, login: 'Michał'},
-    {id: 3, login: 'Zuzanna'}
+    {id: 1, login: 'Rafał', active: true, role: 'basic'},
+    {id: 2, login: 'Michał', active: true, role: 'basic'},
+    {id: 3, login: 'Zuzanna', active: true, role: 'basic'}
   ];
 
   constructor(private _http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return of(this.users);
+    return this._http.get<User[]>(environment.baseUrl + environment.usersUrl)
+    .pipe(catchError(err => {
+      return this.handleError(err);
+    }));
   }
 
   addUser(user: UserLogin): Observable<boolean | {}> {
