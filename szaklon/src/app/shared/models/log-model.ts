@@ -1,7 +1,6 @@
 export interface Log {
     id: number;
-    action: string;
-    date: Date;
-    username: string;
-    ip: string;
+    logging_succession: boolean;
+    logging_time: Date;
+    login: string;
 }

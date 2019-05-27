@@ -13,4 +13,5 @@ export const environment = {
   addSongUrl: 'add_song',
   editSongUrl: 'edit_song',
   usersUrl: 'users',
+  logsUrl: 'logs'
 };

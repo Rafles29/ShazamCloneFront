@@ -51,10 +51,9 @@ export class LogsComponent implements OnInit {
     }
     filterBy = filterBy.toLocaleLowerCase();
     return this.logs.filter((log: Log) =>
-      log.username.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      log.ip.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      log.action.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      log.date.toLocaleString('pl-PL').indexOf(filterBy) !== -1);
+      log.login.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      (log.logging_succession ? 'Login success' : 'Login error').toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      log.logging_time.toLocaleString('pl-PL').indexOf(filterBy) !== -1);
   }
 
 }

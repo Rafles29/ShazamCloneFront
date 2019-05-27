@@ -24,22 +24,17 @@
           <thead>
             <tr>
               <th>
-                <a (click)="sortBy('action')">Action
+                <a (click)="sortBy('logging_succession')">Action
                   <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                 </a>
               </th>
               <th>
-                <a (click)="sortBy('id')">Username
+                <a (click)="sortBy('login')">Username
                   <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                 </a>
               </th>
               <th>
-                <a (click)="sortBy('date')">Date
-                  <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
-                </a>
-              </th>
-              <th>
-                <a (click)="sortBy('ip')">IP
+                <a (click)="sortBy('logging_time')">Date and time (UTC)
                   <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                 </a>
               </th>
@@ -47,10 +42,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let log of filteredLogs">
-              <td>{{log.action}}</td>
-              <td>{{log.username}}</td>
-              <td>{{log.date | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-              <td>{{log.ip}}</td>
+              <td>{{log.logging_succession ? 'Login success' : 'Login error'}}</td>
+              <td>{{log.login}}</td>
+              <td>{{log.logging_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
             </tr>
           </tbody>
         </table>
