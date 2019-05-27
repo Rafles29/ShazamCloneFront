@@ -47,9 +47,14 @@ export class UserListComponent implements OnInit {
   }
 
   performFilter(filterBy: string): User[] {
+    if (filterBy.length < 3) {
+      return this.users;
+    }
+
     filterBy = filterBy.toLocaleLowerCase();
     return this.users.filter((user: User) =>
-      user.login.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      user.login.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      user.role.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   getUsers() {

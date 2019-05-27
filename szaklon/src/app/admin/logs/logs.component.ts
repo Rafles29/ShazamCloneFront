@@ -46,7 +46,7 @@ export class LogsComponent implements OnInit {
   }
 
   performFilter(filterBy: string): Log[] {
-    if(filterBy.length < 3) {
+    if (filterBy.length < 3) {
       return this.logs;
     }
     filterBy = filterBy.toLocaleLowerCase();
