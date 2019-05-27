@@ -39,6 +39,11 @@
                   <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
                 </a>
               </th>
+              <th>
+                <a (click)="sortBy('active')">Active
+                  <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+                </a>
+              </th>
               <!-- <th>
                   Edit
                 </th> -->
@@ -55,9 +60,12 @@
               <td>{{user.id}}</td>
               <td>{{user.login}}</td>
               <td>{{user.role}}</td>
+              <td class="active-status-cell">
+                <mdb-icon fas icon="{{user.active ? 'check' : 'times'}}" [ngClass]="{'text-success': user.active, 'text-danger': !user.active}"></mdb-icon>
+              </td>
               <td class="delete-btn-cell">
                 <button type="button" mdbBtn color="danger" outline="true" rounded="true" size="sm"
-                  class="px-2 delete-btn" mdbWavesEffect (click)="deleteUser(user)">
+                  class="px-2 delete-btn" mdbWavesEffect (click)="deleteUser(user)" *ngIf="user.active">
                   <mdb-icon fas icon="times" class="mt-0"></mdb-icon>
                 </button>
               </td>

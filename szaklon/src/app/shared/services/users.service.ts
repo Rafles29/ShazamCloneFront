@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { Observable, of, throwError } from 'rxjs';
 import { UserLogin } from '../models/user-login.model';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -34,12 +34,11 @@ export class UsersService {
   }
 
   // returns true if deleted successfully
-  deleteUser(user: User): Observable<boolean> {
-    // TODO replace mock with real code
-
-    // MOCK
-    this.users.splice(this.users.indexOf(user), 1);
-    return of(true);
+  deleteUser(user: User): Observable<boolean | {}> {
+    return this._http.delete<boolean>(environment.baseUrl + environment.accountUrl + '/' + user.id)
+    .pipe(catchError(err => {
+      return this.handleError(err);
+    }));
   }
 
   handleError(error) {

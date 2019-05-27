@@ -27,10 +27,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._userService.getUsers().subscribe(users => {
-      this.users = users;
-      this.filteredUsers = this.users;
-    });
+    this.getUsers();
   }
 
   sortBy(by: string | any): void {
@@ -55,15 +52,20 @@ export class UserListComponent implements OnInit {
       user.login.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
+  getUsers() {
+    const subscription = this._userService.getUsers().subscribe(users => {
+      this.users = users;
+      this.filteredUsers = this.users;
+      subscription.unsubscribe();
+    });
+  }
+
   deleteUser(user: User) {
     this._userService.deleteUser(user).subscribe(deleted => {
-      if(deleted) {
+        this.getUsers();
         this._toaster.success('Deleted successfully');
-      } else {
-        this._toaster.error('Could not delete user');
-      }
     }, error => {
-      this._toaster.error('Something went wrong, please try again later');
+      this._toaster.error('Could not delete user');
     });
   }
 
