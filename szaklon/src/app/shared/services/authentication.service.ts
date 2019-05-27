@@ -48,13 +48,12 @@ export class AuthenticationService {
   }
 
   // true if account deleted
-  deleteAccount(): Observable<boolean> {
-    // TODO replace mock with real code
-
-    // MOCK
-    this.deleteUser();
-    this.loggedInSubject.next(false);
-    return of(true);
+  deleteAccount(): Observable<boolean | {}> {
+    return this._http.delete<boolean>(environment.baseUrl + environment.accountUrl)
+    .pipe(tap(response => {
+      this.deleteUser();
+      this.loggedInSubject.next(false);
+    }));
   }
 
   handleError(error) {

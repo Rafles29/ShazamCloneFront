@@ -19,12 +19,10 @@ export class ProfileComponent implements OnInit {
 
   deleteAccount() {
     this._auth.deleteAccount().subscribe(response => {
-      if (response) {
         this.toast.success('Account deleted')
         this._router.navigateByUrl('/');
-      } else {
+    }, error => {
         this.toast.error('Could not delete account')
-      }
     });
   }
 
