@@ -23,57 +23,8 @@ export class SongsService {
   @Output() songRecognizeError: EventEmitter<string> = new EventEmitter(true);
   constructor(private _http: HttpClient) { }
 
-  private songs: Song[] = [
-    {
-      id: 1,
-      title: 'Behind Enemy Lines',
-      artist: 'Rafael Krux',
-      url: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-      genre: 'Epic',
-      featured: true
-    },
-    {
-      id: 2,
-      title: 'Big Eyes',
-      artist: 'Rafael Krux',
-      url: 'https://freepd.com/music/Big%20Eyes.mp3',
-      genre: 'Epic',
-      featured: false
-    },
-    {
-      id: 3,
-      title: 'Epic Boss Battle',
-      artist: 'Rafael Krux',
-      url: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-      genre: 'Epic',
-      featured: false
-    },
-    {
-      id: 4,
-      title: 'Behind Enemy Lines',
-      artist: 'Rafael Krux',
-      url: 'https://freepd.com/music/Behind%20Enemy%20Lines.mp3',
-      genre: 'Epic',
-      featured: false
-    },
-    {
-      id: 5,
-      title: 'Epic Boss Battle',
-      artist: 'Zenek Martyniuk',
-      url: 'https://freepd.com/music/Epic%20Boss%20Battle.mp3',
-      genre: 'Disco',
-      featured: false
-    }
-  ];
-
-
   public getMostPopularSongs(): Observable<TopSong[]> {
     return this._http.get<TopSong[]>(environment.baseUrl + environment.popularUrl + '/' + this.popularLimit);
-  }
-
-  public getSongs(): Observable<Song[]> {
-    // TODO add backend filtering
-    return of(this.songs);
   }
 
   public getArtists(): Observable<string[]> {
@@ -85,7 +36,6 @@ export class SongsService {
   }
 
   public searchSongs(options: SearchOptions): Observable<Song[]> {
-    // TODO add backend filtering
     return this._http.post<Song[]>(environment.baseUrl + environment.songsUrl, options);
   }
 
