@@ -53,7 +53,10 @@ export class LogsComponent implements OnInit {
     return this.logs.filter((log: Log) =>
       log.login.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
       (log.logging_succession ? 'Login success' : 'Login error').toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      log.logging_time.toLocaleString('pl-PL').indexOf(filterBy) !== -1);
+      log.logging_time.toLocaleString('pl-PL').indexOf(filterBy) !== -1 ||
+      log.ip_addr.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      log.os.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
+      log.browser.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
 }
