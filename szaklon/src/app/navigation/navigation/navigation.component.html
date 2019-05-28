@@ -1,5 +1,5 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" [ngClass]="(isMobile)?'navbar-expand': ''" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" *ngIf="!isMobile"  [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" routerLink="/">Szaklon</a></mdb-navbar-brand>
@@ -51,3 +51,43 @@
 
 </mdb-navbar>
 <!--/.Navbar-->
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue-gradient" *ngIf="isMobile"  [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" routerLink="/">Szaklon</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto" *ngIf="!loggedIn">
+          <li class="nav-item" *ngIf="!loggedIn">
+              <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect>Login</a>
+          </li>
+          <li class="nav-item" *ngIf="!loggedIn">
+              <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect>Register</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="loggedIn">
+        <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin/users">Users</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin/users/add">Add user</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin/songs">Songs</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin/songs/add">Add Song</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin/logs">Logs</a>
+            <div class="divider dropdown-divider"></div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/profile">Profile ({{ username }})</a>
+            <a class="nav-link waves-light" mdbWavesEffect (click)="logout()" routerLink="/">Logout</a>
+        </li>
+        </ul>
+        <!-- Links -->
+  
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->
