@@ -6,6 +6,7 @@ import { tap, catchError, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserRegister } from '../models/user-register.model';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 const TOKEN_KEY = 'Token';
 const USERNAME_KEY = 'Username';
@@ -18,13 +19,16 @@ export class AuthenticationService {
   private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject(this.hasToken());
   private adminSubject: BehaviorSubject<boolean> = new BehaviorSubject(this.hasAdminPower());
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _toast: ToastService) { }
 
   login(userCredentials: UserLogin): Observable<UserAuth> {
-
     return this._http.post<UserAuth>(environment.baseUrl + environment.loginUrl, userCredentials)
     .pipe(tap(res => {
+      const timer = setInterval(() => {
+        this.checkSession(timer);
+      }, environment.SESSION_CHECK_INTERVAL);
       this.saveUser(userCredentials.login, res.token, res.is_admin);
+
     }))
     .pipe(catchError(err => {
       this.loggedInSubject.next(false);
@@ -54,6 +58,17 @@ export class AuthenticationService {
       this.deleteUser();
       this.loggedInSubject.next(false);
     }));
+  }
+
+  checkSession(timer: NodeJS.Timer): void {
+    this._http.get<void>(environment.baseUrl + environment.checkSessionUrl).subscribe(resonse => {
+
+    }, error => {
+      this.handleError(error);
+      this._toast.error('You have been logged out due to long inactivity');
+      this.deleteUser();
+      clearInterval(timer);
+    })
   }
 
   handleError(error) {

@@ -14,5 +14,8 @@ export const environment = {
   editSongUrl: 'edit_song',
   usersUrl: 'users',
   logsUrl: 'logs',
-  accountUrl: 'account'
+  accountUrl: 'account',
+  checkSessionUrl: 'check_session',
+
+  SESSION_CHECK_INTERVAL: 30000 // 30 seconds
 };
