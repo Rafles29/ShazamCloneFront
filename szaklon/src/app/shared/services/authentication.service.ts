@@ -18,15 +18,14 @@ const ADMIN_KEY = 'Admin';
 export class AuthenticationService {
   private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject(this.hasToken());
   private adminSubject: BehaviorSubject<boolean> = new BehaviorSubject(this.hasAdminPower());
+  private timer: NodeJS.Timer;
 
   constructor(private _http: HttpClient, private _toast: ToastService) { }
 
   login(userCredentials: UserLogin): Observable<UserAuth> {
     return this._http.post<UserAuth>(environment.baseUrl + environment.loginUrl, userCredentials)
     .pipe(tap(res => {
-      const timer = setInterval(() => {
-        this.checkSession(timer);
-      }, environment.SESSION_CHECK_INTERVAL);
+      this.enableCheckSession();
       this.saveUser(userCredentials.login, res.token, res.is_admin);
 
     }))
@@ -39,8 +38,10 @@ export class AuthenticationService {
   logout() {
     this._http.post(environment.baseUrl + environment.logoutUrl, null).subscribe(response => {
       this.deleteUser();
+      this.disableCheckSession();
     }, err => {
       this.deleteUser();
+      this.disableCheckSession();
     });
   }
 
@@ -60,14 +61,24 @@ export class AuthenticationService {
     }));
   }
 
-  checkSession(timer: NodeJS.Timer): void {
+  enableCheckSession(): void {
+    this.timer = setInterval(() => {
+      this.checkSession();
+    }, environment.SESSION_CHECK_INTERVAL);
+  }
+
+  disableCheckSession(): void {
+    clearInterval(this.timer);
+  }
+
+  private checkSession(): void {
     this._http.get<void>(environment.baseUrl + environment.checkSessionUrl).subscribe(resonse => {
 
     }, error => {
       this.handleError(error);
       this._toast.error('You have been logged out due to long inactivity');
       this.deleteUser();
-      clearInterval(timer);
+      clearInterval(this.timer);
     })
   }
 

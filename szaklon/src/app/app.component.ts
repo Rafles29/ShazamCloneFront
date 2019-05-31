@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (this._auth.hasToken()) {
-      const timer = setInterval(() => {
-        this._auth.checkSession(timer);
-      }, environment.SESSION_CHECK_INTERVAL);
+      this._auth.enableCheckSession();
     }
   }
 }
