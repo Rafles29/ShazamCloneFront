@@ -24,18 +24,28 @@ export class HomepageComponent implements OnInit {
       mostPopularSongs => {
         this.mostPopularSongs = mostPopularSongs;
       }
-    )
+    );
 
     this._auth.isLoggedIn().subscribe(newValue => {
       this.loggedIn = newValue;
       if (this.loggedIn) {
-        this._songs.getHistory().subscribe(history => {
-          this.history = history;
-        });
+        this.getHistory();
       } else {
         this.showHistory = false;
       }
-    })
+    });
+
+    this._songs.songsRecognized.subscribe(songs => {
+      if(this._auth.hasToken()) {
+        this.getHistory();
+      }
+    });
+  }
+
+  getHistory() {
+    this._songs.getHistory().subscribe(history => {
+      this.history = history;
+    });
   }
 
   toggleHistory(event) {
