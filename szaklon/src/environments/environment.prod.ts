@@ -17,5 +17,7 @@ export const environment = {
   accountUrl: 'account',
   checkSessionUrl: 'check_session',
 
-  SESSION_CHECK_INTERVAL: 30000 // 30 seconds
+  SESSION_CHECK_INTERVAL: 30000, // 30 seconds
+
+  ADD_SONG_TIMEOUT: 120000 // 120 seconds
 };

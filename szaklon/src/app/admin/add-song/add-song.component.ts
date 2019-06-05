@@ -15,6 +15,7 @@ import { JsonInputReaderService } from 'src/app/shared/services/json-input-reade
 export class AddSongComponent implements OnInit {
 
   songs: Song[];
+  loading: boolean;
 
   addSongForm = this._formBuilder.group({
     title: ['', Validators.required],
@@ -58,6 +59,7 @@ export class AddSongComponent implements OnInit {
 
   addSong() {
     if (this.addSongForm.valid) {
+      this.loading = true;
       this._songsService.addSongs([{
         title: this.addSongForm.get('title').value,
         artist: this.addSongForm.get('artist').value,
@@ -66,19 +68,24 @@ export class AddSongComponent implements OnInit {
       }]).subscribe(token => {
           this._toast.success('Song added successfully');
           this.addSongForm.reset();
+          this.loading = false;
       }, err => {
         this._toast.error('Something went wrong, please try again later');
+        this.loading = false;
       });
     }
   }
 
   addSongs() {
     if (this.addJsonForm.valid) {
+      this.loading = true;
       this._songsService.addSongs(this.songs).subscribe(token => {
           this._toast.success('Song added successfully');
           this.addJsonForm.reset();
+          this.loading = false;
       }, err => {
         this._toast.error('Something went wrong, please try again later');
+        this.loading = false;
       });
     }
   }

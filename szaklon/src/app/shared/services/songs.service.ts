@@ -48,7 +48,7 @@ export class SongsService {
   }
 
   public addSongs(songs: AddSong[]): Observable<void> {
-    return this._http.post<void>(environment.baseUrl + environment.addSongUrl, songs);
+    return this._http.post<void>(environment.baseUrl + environment.addSongUrl, songs, { headers: new HttpHeaders({ timeout: `${environment.ADD_SONG_TIMEOUT}` }) });
   }
 
   public recognize(song): void {

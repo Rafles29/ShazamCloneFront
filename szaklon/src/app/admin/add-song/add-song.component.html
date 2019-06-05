@@ -1,5 +1,11 @@
 <!-- Material form login -->
-<div class="mx-auto mt-3 container-mw-40" >
+<div class="d-flex d-flex-column justify-content-center mt-3" *ngIf="loading" >
+  <h1 class="loading-header">
+    Please wait while the server is processing your request...
+  </h1>
+  <mdb-spinner spinnerColor="blue"></mdb-spinner>
+</div>
+<div class="mx-auto mt-3 container-mw-40" *ngIf="!loading" >
 
     <mdb-card  class="mt-4">
 
@@ -90,7 +96,7 @@
   <!-- Material form login -->
 
   <!-- Editable table -->
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="!loading">
   <h2>Preview</h2>
  <app-song-list [songs]="songs" [admin]="false"></app-song-list>
 </div>

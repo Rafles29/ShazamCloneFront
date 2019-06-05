@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
+import { TimeoutInterceptor, DEFAULT_TIMEOUT } from './shared/interceptors/timeout.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { AdminModule } from './admin/admin.module';
   ],
   providers: [
     MDBSpinningPreloader,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
+    { provide: DEFAULT_TIMEOUT, useValue: 30000 }
   ],
   bootstrap: [AppComponent]
 })
