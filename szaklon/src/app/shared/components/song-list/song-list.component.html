@@ -20,7 +20,7 @@
             <small class="text-muted" *ngIf="admin">Featured: {{ song?.featured }}</small>
           </mdb-card-text>
         </mdb-card-body>
-        <audio class="w-100 px-3 mb-4" controls>
+        <audio class="w-100 px-3 mb-4" controls controlsList="nodownload">
           <source [src]="song?.url">
           Your browser does not support audio element.
         </audio>
