@@ -17,19 +17,18 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'admin/users', component: UserListComponent/*, canActivate: [AdminGuard] */},
-  { path: 'admin/users/add', component: AddUserComponent/*, canActivate: [AdminGuard] */},
+  { path: 'admin/users', component: UserListComponent, canActivate: [AdminGuard] },
+  { path: 'admin/users/add', component: AddUserComponent, canActivate: [AdminGuard]},
   { path: 'admin/songs', component: AdminSongListComponent, canActivate: [AdminGuard]},
-  { path: 'admin/songs/add', component: AddSongComponent /*, canActivate: [AdminGuard] */},
-  { path: 'admin/logs', component: LogsComponent /*, canActivate: [AdminGuard] */},
+  { path: 'admin/songs/add', component: AddSongComponent, canActivate: [AdminGuard]},
+  { path: 'admin/logs', component: LogsComponent, canActivate: [AdminGuard] },
   { path: '', component: HomepageComponent },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
     )
   ],
   exports: [
